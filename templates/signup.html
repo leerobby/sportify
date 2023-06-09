@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+
+<head>
+
+    <meta charset = "UTF-8">
+    <title>Login Page</title>
+    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'signup.css')}}">
+
+</head>
+
+
+<body>
+
+
+    <div class = "box">
+
+
+        <form method = "POST" action = "/register">
+
+
+            <h2>Sign Up</h2>
+
+
+            <div class = "inputBox">
+                
+                <input
+                    type = "text"
+                    required = "required"
+                    name = "firstName"
+                    id = "firstName"
+                />
+                <span>First Name</span>
+                <i></i>
+            
+            </div>
+            
+            
+            <div class = "inputBox">
+                
+                <input
+                    type = "text"
+                    required = "required"
+                    name = "lastName"
+                    id = "lastName"
+                />
+                <span>Last Name</span>
+                <i></i>
+
+            </div>
+
+
+            <div class = "Selection" style = "width: 300px;">
+
+                <select
+                    name = "gender"
+                    id = "gender"
+                >
+
+                    <option value = "undisclosed">Select Gender</option>
+                    <option value = "male">Male</option>
+                    <option value = "female">Female</option>
+                
+                </select>
+                <i></i>
+            
+            </div>
+
+
+            <div class = "inputBox">
+                
+                <input
+                    type = "text" 
+                    required = "required"
+                    name = "user_id"
+                    id = "user_id"
+                />
+                <span>Username</span>
+                <i></i>
+
+            </div>
+
+
+            <div class = "inputBox">
+                
+                <input
+                    type = "password"
+                    required = "required"
+                    name = "password"
+                    id = "password"
+                />
+                <span>Password</span>
+                <i></i>
+            
+            </div>
+
+
+            <div class = "inputBox">
+
+                <input 
+                    type = "password" 
+                    required = "required" 
+                    id = "confirmPassword"
+                />
+                <span>Confirm Password</span>
+                <i class="fas fa-eye-slash"></i>
+                <i></i>
+
+            </div>
+
+
+            <div class = "link">
+
+                <a>Already have an account?</a>
+                <a href="login">Login!</a>
+
+            </div>
+
+
+            <input type = "submit" value = "Sign Up">
+
+
+        </form>
+
+
+    </div>
+
+    <script src="{{ url_for('static', filename = 'signup.js')}}"></script>
+
+</body>

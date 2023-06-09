@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-y: auto;
+}
+
+.sportify_logo {
+    width: 200px;
+    vertical-align: middle;
+}
+
+.navbar {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+}
+
+.navbar_header {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar_links {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar_links li {
+    margin: 0 10px;
+    margin: 0 5em;
+}
+
+.navbar_links li a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar_links li:hover {
+    filter: blur(0);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgb(50, 50, 245) 35%, rgb(255, 0, 221) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar .navbar_header .sign_in_button {
+    background-color: #fff;
+    font-size: medium;
+    left: 0;
+    border-radius: 1.5em;
+    margin: 0 5em;
+    padding: 0.5em 1.5em;
+}
+
+.sign_in_button:hover {
+    filter: blur(0);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgb(50, 50, 245) 35%, rgb(255, 0, 221) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header_line {
+    background: linear-gradient(30deg, #6c2b5d, #da2532);
+    height: 0.5em;
+}

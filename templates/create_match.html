@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Make Match</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'create_match.css')}}">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <nav class="navbar_header">
+
+                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify" class="sportify_logo">
+
+                <ul class="navbar_links">
+                    <li><a href="dashboard">Home</a></li>
+                    <li><a href="match">Match</a></li>
+                    <li><a href="about">About</a></li>
+                </ul>
+
+                <form action="#">
+                    <input type="button" value="Sign in" class="sign_in_button">
+                </form>
+
+            </nav>
+
+            <div class="header_line"></div>
+
+            <div class="body_container">
+                <div class="main_body">
+                    <h1>Create Your Match</h1>
+                    <div class="mid_container">
+
+                        <div class="in_content">
+
+                            <form action="#">
+
+                                <!-- Event Name -->
+                                <div class="div_container">
+                                    <label for="event_name">Event Name</label>
+                                    <input type="text" id="event_name" name="event_name" placeholder="Make it striking!"
+                                        required>
+                                </div>
+
+                                <!-- Sport Type -->
+                                <div class="div_container">
+                                    <label for="sport">Sport type</label>
+                                    <select name="sport" id="sport">
+                                        <option value="">-- Pick desired sport --</option>
+                                        <option value="futsal">Futsal</option>
+                                        <option value="basketball">Basketball</option>
+                                        <option value="badminton">Badminton</option>
+                                        <option value="tennis">Tennis</option>
+                                    </select>
+                                </div>
+
+                                <!-- Player Slot -->
+                                <div class="div_container">
+                                    <label for="p_num">Player Slot</label>
+                                    <input type="number" name="p_num" id="p_num" min="1" max="10" value="2">
+                                </div>
+
+                                <!-- NEED REVISION -->
+                                <!-- Location -->
+                                <div class="div_container">
+                                    <label for="location">Location</label>
+                                    <select name="location" id="location">
+                                        <option value="GAK TAU">GAK TAU</option>
+                                    </select>
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="div_container">
+                                    <label for="female">Female Only:</label>
+                                    <input type="radio" name="gender" id="female" value="female">
+                                    <label for="male">Male Only:</label>
+                                    <input type="radio" name="gender" id="male" value="male">
+                                    <label for="mix">Mix:</label>
+                                    <input type="radio" name="gender" id="mix" value="mix">
+                                </div>
+
+                                <!-- Date & Time -->
+                                <div class="div_container">
+                                    <label for="date_time">Set the Date</label>
+                                    <input type="datetime-local" name="date_time" id="date_time">
+                                </div>
+
+                                <!-- Description -->
+                                <div class="div_container" id="des">
+                                    <textarea name="description" id="description" cols="40" rows="10"></textarea>
+                                    <label for="description">Description</label>
+
+                                </div>
+
+                            </form>
+
+                            <div class="in_content">
+
+                                <form action="#">
+
+                                    <!-- Price -->
+                                    <div class="div_container">
+                                        <label for="price">Price</label>
+                                        <input type="text" id="price" name="price"
+                                            placeholder="Please be reasonable :&#41;">
+                                    </div>
+
+                                    <!-- Payment Method -->
+                                    <div class="div_container">
+                                        <h4>Payment Method</h4>
+
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" name="k_pay" id="k_pay">
+                                                <label for="k_pay">Kakao
+                                                    Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}" alt="k_pay logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="n_pay" id="n_pay">
+                                                <label for="n_pay">Naver
+                                                    Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}" alt="n_pay logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="payco" id="payco">
+                                                <label for="payco">Payco<img src="{{ url_for('static', filename = 'img/paycoLogo.png')}}"
+                                                        alt="payco logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="t_pay" id="t_pay">
+                                                <label for="t_pay">Toss
+                                                    Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}" alt="t_pay logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="s_pay" id="s_pay">
+                                                <label for="s_pay">Smile
+                                                    Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}" alt="s_pay logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="card" id="card">
+                                                <label for="card">Card Payment<img src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
+                                                        alt="card logo"></label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="cos" id="cos">
+                                                <label for="cos">Cash on Site<img src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
+                                                        alt="cash logo"></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Create Button -->
+                                    <div class="div_container" id="create_button">
+                                        <input type="button" value="Create Match" class="custom-button">
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
