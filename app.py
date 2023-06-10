@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder = "templates")
 db_url = 'mysql+pymysql://'
 
 db = mysql.connector.connect(
-    host = "localhost",
+    host = "34.22.79.75",
     user = "root",
     password = "alex050601",
     database = "mydb"
@@ -98,6 +98,31 @@ def match():
 @app.route('/create_match')
 def create_match():
     return render_template("create_match.html")
+
+
+@app.route('/make_match', methods = ['GET', 'POST'])
+def make_match():
+    cur_match_id = 1
+
+    #input
+    event_name = request.form.get("event_name")
+    sport_type = request.form.get("sport")
+    player_num = request.form.get("p_num")
+    location = request.form.get("location")
+    gender = request.form.get("gender")
+    date_time = request.form.get("date_time")
+    date = date_time[:10]
+    time = date_time[-5:]
+    description = request.form.get("description")
+
+    #add data to db
+    sqlform = "Insert into Match(ID, event_name, sport_type, player_slot, Location_id, gender, date, time, description) values (%d, %s, %s, %d, %d, %s, %s, %s, %s)"
+    match_data = [(cur_match_id, event_name, sport_type, player_slot, Location_id, gender, date, time, description)]
+    cursor.executemany(sqlform, match_data)
+    db.commit()
+    cursor.close()
+
+    return render_template("dashboard.html")
 
 
 @app.route('/about')

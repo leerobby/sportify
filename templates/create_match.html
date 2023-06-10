@@ -37,7 +37,7 @@
 
                         <div class="in_content">
 
-                            <form action="#">
+                            <form method = "POST" action = "/make_match" id = "form1">
 
                                 <!-- Event Name -->
                                 <div class="div_container">
@@ -69,7 +69,26 @@
                                 <div class="div_container">
                                     <label for="location">Location</label>
                                     <select name="location" id="location">
-                                        <option value="GAK TAU">GAK TAU</option>
+                                        <option value="210001">The Futsal Park</option>
+                                        <option value="210002">BOSC Best One Futsal Park</option>
+                                        <option value="210003">Sky Field</option>
+                                        <option value="210004">Sports Island Futsal Field</option>
+                                        <option value="210005">EK Futsal Park</option>
+                                        <option value="220001">K & D Basketball Chodang Branch</option>
+                                        <option value="220002">Osan Sports Complex</option>
+                                        <option value="220003">Suwon Youth Culture Center</option>
+                                        <option value="220004">Seongnam Sports Complex</option>
+                                        <option value="220005">Seosuwon Chilbo Sports Center</option>
+                                        <option value="230001">Dongtan Badminton Court</option>
+                                        <option value="230002">Seoho Sports Center</option>
+                                        <option value="230003">Sukji Park Multipurpose Sports Center</option>
+                                        <option value="230004">Maetan Multipurpose Sports Center</option>
+                                        <option value="230005">On & Off Sports</option>
+                                        <option value="240001">Soleas Tennis Bundang Ori Branch</option>
+                                        <option value="240002">I Am Indoor Tennis</option>
+                                        <option value="240003">Eonjena Tennis</option>
+                                        <option value="240004">Riverside Tennis Court</option>
+                                        <option value="240005">Suji Sports Park</option>
                                     </select>
                                 </div>
 
@@ -100,7 +119,7 @@
 
                             <div class="in_content">
 
-                                <form action="#">
+                                <form method = "POST" id = "form2">
 
                                     <!-- Price -->
                                     <div class="div_container">
@@ -155,7 +174,7 @@
 
                                     <!-- Create Button -->
                                     <div class="div_container" id="create_button">
-                                        <input type="button" value="Create Match" class="custom-button">
+                                        <input type="button" value="Create Match" class="custom-button" onclick="submitForms()"/>
                                     </div>
 
                                 </form>
@@ -169,6 +188,8 @@
             </div>
 
         </div>
+
+    <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
 
     </body>
 

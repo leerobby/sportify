@@ -118,6 +118,20 @@ def match():
 def create_match():
     return render_template("create_match.html")
 
+@app.route('/make_match', methods = ['GET', 'POST'])
+def make_match():
+    #input
+    event_name = request.form.get("event_name")
+    sport_type = request.form.get("sport")
+    player_num = request.form.get("p_num")
+    location = request.form.get("location")
+    gender = request.form.get("gender")
+    date_time = request.form.get("date_time")
+    description = request.form.get("description")
+
+    print(event_name, sport_type, player_num, location, gender, date_time, description)
+    return render_template("dashboard.html")
+
 
 @app.route('/about')
 def about():
