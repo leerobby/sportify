@@ -12,7 +12,7 @@ body
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("sportify.png");
+    background-image: url("img/sportify.png");
     background-position: center center;
 }
 .box
