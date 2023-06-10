@@ -209,7 +209,7 @@ textarea:focus {
 select {
     appearance: none;
     padding-right: 25px;
-    background-image: url("arrow.png");
+    background-image: url("img/arrow.png");
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 16px 16px;
