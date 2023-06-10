@@ -12,6 +12,7 @@ db = mysql.connector.connect(
     database = "mydb"
 )
 
+cur_user = ""
 
 @app.route('/')
 def home():
@@ -45,6 +46,7 @@ def signin():
     cursor.close()
 
     #if user id doesn't exist or password is incorrect
+    cur_user = user_id
     return render_template('login.html')
 
 
@@ -90,9 +92,42 @@ def dashboard():
     return render_template("dashboard.html")
 
 
-@app.route('/match')
+@app.route('/match', methods = ['GET', 'POST'])
 def match():
-    return render_template("match.html")
+
+    #fetch matches from db
+    sqlform = "SELECT date, time, event_name, sport_type, location_id, price, host_name FROM Matches"
+    cursor = db.cursor()
+    cursor.execute(sqlform)
+    matches = cursor.fetchall()
+
+    # #fetch location name from db
+    # sqlform = "SELECT ID, venue_name FROM Location"
+    # cursor.execute(sqlform)
+    # locations = cursor.fetchall()
+
+    #generate html file
+    match_file = open('templates/match1.txt', 'r')
+    html_content = match_file.read()
+
+    for row in matches:
+
+        html_content += f'<div class="grid_content">'
+        html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
+        html_content += f'<span>{row[2]}</span><br>'
+        html_content += f'<span>{row[3]}</span><br>'
+        html_content += f'<span>{row[4]}</span><br>'
+        html_content += f'<span>{row[5]}</span><br>'
+        html_content += f'<span>{row[6]}</span><br> </div>'
+
+    match_file = open('templates/match2.txt', 'r')
+    html_content += match_file.read()
+
+    #output html file
+    with open('templates/match2.html', 'w') as file:
+        file.write(html_content)
+    
+    return render_template("match2.html")
 
 
 @app.route('/create_match')
@@ -124,8 +159,9 @@ def make_match():
     cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Match(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price) values (%d, %s, %s, %d, %d, %s, %s, %s, %s, %d)"
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location, gender, date, time, description, price)]
+    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db.cursor()
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
