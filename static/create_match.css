@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 * {
     box-sizing: border-box;
 }
@@ -173,4 +175,68 @@ body {
 .div_container img {
     width: 40px;
     margin-left: 10px;
+}
+
+.div_container {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+select {
+    appearance: none;
+    padding-right: 25px;
+    background-image: url("arrow.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 16px 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.extra_space {
+    height: 30px;
+}
+
+.price-input-container {
+    position: relative;
+}
+
+.price-input-container::before {
+    content: "₩";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #555;
+}
+
+.price-input-container input[type="text"] {
+    padding-left: 25px;
 }
