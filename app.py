@@ -101,22 +101,25 @@ def match():
     cursor.execute(sqlform)
     matches = cursor.fetchall()
 
-    # #fetch location name from db
-    # sqlform = "SELECT ID, venue_name FROM Location"
-    # cursor.execute(sqlform)
-    # locations = cursor.fetchall()
+    #fetch location name from db
+    sqlform = "SELECT ID, venue_name FROM Location"
+    cursor.execute(sqlform)
+    locations = cursor.fetchall()
 
     #generate html file
     match_file = open('templates/match1.txt', 'r')
     html_content = match_file.read()
 
     for row in matches:
+        for location in locations:
+            if row[4] == location[0]:
+                match_loc = location[1]
 
         html_content += f'<div class="grid_content">'
         html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
         html_content += f'<span>{row[2]}</span><br>'
         html_content += f'<span>{row[3]}</span><br>'
-        html_content += f'<span>{row[4]}</span><br>'
+        html_content += f'<span>{match_loc}</span><br>'
         html_content += f'<span>{row[5]}</span><br>'
         html_content += f'<span>{row[6]}</span><br> </div>'
 
