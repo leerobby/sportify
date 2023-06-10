@@ -120,16 +120,29 @@ def create_match():
 
 @app.route('/make_match', methods = ['GET', 'POST'])
 def make_match():
+    cur_match_id = 1
+
     #input
     event_name = request.form.get("event_name")
     sport_type = request.form.get("sport")
     player_num = request.form.get("p_num")
-    location = request.form.get("location")
+    location_id = request.form.get("location")
     gender = request.form.get("gender")
     date_time = request.form.get("date_time")
+    date = date_time[:10]
+    time = date_time[-5:]
     description = request.form.get("description")
+    price = request.form.get("price")
+    kakaopay = request.form.get("k_pay")
+    naverpay = request.form.get("n_pay")
+    payco = request.form.get("payco")
+    tosspay = request.form.get("t_pay")
+    smilepay = request.form.get("s_pay")
+    card = request.form.get("card")
+    cash = request.form.get("cos")
 
-    print(event_name, sport_type, player_num, location, gender, date_time, description)
+    print(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description)
+    print(price, kakaopay, naverpay, payco, tosspay, smilepay, card, cash)
     return render_template("dashboard.html")
 
 

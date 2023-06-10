@@ -35,9 +35,9 @@
                     <h1>Create Your Match</h1>
                     <div class="mid_container">
 
-                        <div class="in_content">
+                        <form method = "post" action="/make_match" id = "form" class="form_container">
+                            <div class="left_content">
 
-                            <form method = "POST" action = "/make_match" id = "form1">
 
                                 <!-- Event Name -->
                                 <div class="div_container">
@@ -109,88 +109,86 @@
                                 </div>
 
                                 <!-- Description -->
-                                <div class="div_container" id="des">
-                                    <textarea name="description" id="description" cols="40" rows="10"></textarea>
+                                <div class="div_container">
+                                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
                                     <label for="description">Description</label>
 
                                 </div>
+                            </div>
 
-                            </form>
+                            <div class="right_content">
 
-                            <div class="in_content">
-
-                                <form method = "POST" id = "form2">
-
-                                    <!-- Price -->
-                                    <div class="div_container">
-                                        <label for="price">Price</label>
-                                        <div class="price-input-container">
-                                            <input type="text" id="price" name="price" placeholder="Enter the price">
-                                        </div>
+                                <!-- Price -->
+                                <div class="div_container">
+                                    <label for="price">Price</label>
+                                    <div class="price-input-container">
+                                        <input type="text" id="price" name="price" placeholder="Enter the price">
                                     </div>
+                                </div>
 
-                                    <!-- Payment Method -->
-                                    <div class="div_container">
-                                        <h4>Payment Method</h4>
+                                <!-- Payment Method -->
+                                <div class="div_container">
+                                    <h4>Payment Method</h4>
 
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" name="k_pay" id="k_pay">
-                                                <label for="k_pay">Kakao
-                                                    Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}" alt="k_pay logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="n_pay" id="n_pay">
-                                                <label for="n_pay">Naver
-                                                    Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}" alt="n_pay logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="payco" id="payco">
-                                                <label for="payco">Payco<img src="{{ url_for('static', filename = 'img/paycoLogo.png')}}"
-                                                        alt="payco logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="t_pay" id="t_pay">
-                                                <label for="t_pay">Toss
-                                                    Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}" alt="t_pay logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="s_pay" id="s_pay">
-                                                <label for="s_pay">Smile
-                                                    Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}" alt="s_pay logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="card" id="card">
-                                                <label for="card">Card Payment<img src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
-                                                        alt="card logo"></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="cos" id="cos">
-                                                <label for="cos">Cash on Site<img src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
-                                                        alt="cash logo"></label>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" name="k_pay" id="k_pay">
+                                            <label for="k_pay">Kakao
+                                                Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}" alt="k_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="n_pay" id="n_pay">
+                                            <label for="n_pay">Naver
+                                                Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}" alt="n_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="payco" id="payco">
+                                            <label for="payco">Payco<img src="{{ url_for('static', filename = 'img/paycoLogo.png')}}" alt="payco logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="t_pay" id="t_pay">
+                                            <label for="t_pay">Toss
+                                                Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}" alt="t_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="s_pay" id="s_pay">
+                                            <label for="s_pay">Smile
+                                                Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}" alt="s_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="card" id="card">
+                                            <label for="card">Card Payment<img src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
+                                                    alt="card logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="cos" id="cos">
+                                            <label for="cos">Cash on Site<img src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
+                                                    alt="cash logo"></label>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                                    <!-- Create Button -->
-                                    <div class="div_container" id="create_button">
-                                        <input type="button" value="Create Match" class="custom-button" onclick="submitForms()"/>
-                                    </div>
-
-                                </form>
+                                <!-- Create Button -->
+                                <div class="div_container" id="create_button">
+                                    <input type="button" value="Create Match" class="custom-button" onclick="submitForms()">
+                                </div>
 
                             </div>
 
-                        </div>
+                        </form>
 
                     </div>
+
                 </div>
+
             </div>
+
+            <div class="extra_space"></div>
 
         </div>
 
-    <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
 
+    <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
     </body>
 
 </html>
