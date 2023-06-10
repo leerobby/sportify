@@ -111,29 +111,30 @@ body {
     text-align: center;
 }
 
-.main_body .div_container {
-    padding: 0.6em;
+.mid_container {
+    width: 100%;
+    height: auto;
+    padding: 0;
     margin: 0;
 }
 
-#des {
-    position: relative;
-    left: 30px;
+.form_container {
+    width: inherit;
+    height: inherit;
 }
 
-.mid_content {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    height: 90%;
-}
-
-.in_content {
+.left_content {
     font-size: 20px;
-    display: flex;
-    flex: 50%;
-    justify-content: center;
+    width: 50%;
+    height: auto;
+    float: left;
+}
+
+.right_content {
+    font-size: 20px;
+    width: 50%;
+    height: auto;
+    float: right;
 }
 
 .custom-button {
@@ -160,10 +161,12 @@ body {
 }
 
 #create_button {
-    position: relative;
-    top: 20px;
-    left: 50px;
     text-align: center;
+}
+
+.div_container {
+    padding: 0.5em;
+    margin: 1em;
 }
 
 .div_container li {
@@ -177,11 +180,7 @@ body {
     margin-left: 10px;
 }
 
-.div_container {
-    margin-bottom: 20px;
-}
-
-label {
+.div_container label {
     display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
@@ -206,7 +205,7 @@ textarea:focus {
     border-color: #007bff;
 }
 
-select {
+.div_container select {
     appearance: none;
     padding-right: 25px;
     background-image: url("img/arrow.png");
@@ -215,12 +214,8 @@ select {
     background-size: 16px 16px;
 }
 
-textarea {
+.div_container textarea {
     resize: vertical;
-}
-
-.extra_space {
-    height: 30px;
 }
 
 .price-input-container {
@@ -239,4 +234,8 @@ textarea {
 
 .price-input-container input[type="text"] {
     padding-left: 25px;
+}
+
+.extra_space {
+    height: 30px;
 }

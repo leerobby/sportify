@@ -108,19 +108,29 @@ def make_match():
     event_name = request.form.get("event_name")
     sport_type = request.form.get("sport")
     player_num = request.form.get("p_num")
-    location = request.form.get("location")
+    location_id = request.form.get("location")
     gender = request.form.get("gender")
     date_time = request.form.get("date_time")
     date = date_time[:10]
     time = date_time[-5:]
     description = request.form.get("description")
+    price = request.form.get("price")
+    kakaopay = request.form.get("k_pay")
+    naverpay = request.form.get("n_pay")
+    payco = request.form.get("payco")
+    tosspay = request.form.get("t_pay")
+    smilepay = request.form.get("s_pay")
+    card = request.form.get("card")
+    cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Match(ID, event_name, sport_type, player_slot, Location_id, gender, date, time, description) values (%d, %s, %s, %d, %d, %s, %s, %s, %s)"
-    match_data = [(cur_match_id, event_name, sport_type, player_slot, Location_id, gender, date, time, description)]
+    sqlform = "Insert into Match(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price) values (%d, %s, %s, %d, %d, %s, %s, %s, %s, %d)"
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location, gender, date, time, description, price)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
+
+    cur_match_id += 1
 
     return render_template("dashboard.html")
 
