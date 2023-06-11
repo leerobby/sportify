@@ -106,30 +106,31 @@ def match():
     sqlform = "SELECT ID, venue_name FROM Location"
     cursor.execute(sqlform)
     locations = cursor.fetchall()
+    cursor.close()
 
     #generate html file
-    match_file = open('templates/match1.txt', 'r')
-    html_content = match_file.read()
+    match_file = open('templates/textFiles/match1.txt', 'r')
+    match_html_content = match_file.read()
 
     for row in matches:
         for location in locations:
             if row[4] == location[0]:
                 match_loc = location[1]
 
-        html_content += f'<div class="grid_content">'
-        html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
-        html_content += f'<span>{row[2]}</span><br>'
-        html_content += f'<span>{row[3]}</span><br>'
-        html_content += f'<span>{match_loc}</span><br>'
-        html_content += f'<span>{row[5]}</span><br>'
-        html_content += f'<span>{row[6]}</span><br> </div>'
+        match_html_content += f'<div class="grid_content">'
+        match_html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
+        match_html_content += f'<span>{row[2]}</span><br>'
+        match_html_content += f'<span>{row[3]}</span><br>'
+        match_html_content += f'<span>{match_loc}</span><br>'
+        match_html_content += f'<span>{row[5]}</span><br>'
+        match_html_content += f'<span>{row[6]}</span><br> </div>'
 
-    match_file = open('templates/match2.txt', 'r')
-    html_content += match_file.read()
+    match_file = open('templates/textFiles/match2.txt', 'r')
+    match_html_content += match_file.read()
 
     #output html file
     with open('templates/match.html', 'w') as file:
-        file.write(html_content)
+        file.write(match_html_content)
     
     return render_template("match.html")
 
@@ -177,7 +178,20 @@ def make_match():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    #generate html file
+    about_file = open('templates/textFiles/about1.txt', 'r')
+    about_html_content = about_file.read()
+
+    about_html_content += f'<span> {cur_user.user_id} </span>'
+
+    about_file = open('templates/textFiles/about2.txt', 'r')
+    about_html_content += about_file.read()
+
+    #output html file
+    with open('templates/about2.html', 'w') as file:
+        file.write(about_html_content)
+    
+    return render_template("about2.html")
 
 
 if __name__ == '__main__':
