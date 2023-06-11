@@ -1,9 +1,12 @@
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, redirect, flash
 import mysql.connector
 from login import Login
 from date import date
+import os
 
 app = Flask(__name__, template_folder = "templates")
+secret_key = os.urandom(24)
+app.secret_key = secret_key
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -142,7 +145,7 @@ def match():
 
         match_html_content += f'<div class="grid_content">'
         day_month_string, suffix, year = date(row[0])
-        match_html_content += f'<span>{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
+        match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
         match_html_content += f'<p id="event_name">{row[2]}</p>'
         match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
         match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
@@ -207,8 +210,8 @@ def make_match():
     cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, slot_left) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1)]
+    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, slot_left, player_0) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1, cur_user.user_id)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
