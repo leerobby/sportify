@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template, redirect
 import mysql.connector
+import os
 from login import Login
 from date import date
-import time
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -110,6 +110,11 @@ def dashboard():
 
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
+    #delete match.html
+    file_path = "templates/textFiles.html"
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
     cursor = db.cursor()
@@ -153,8 +158,6 @@ def match():
     #output html file
     with open('templates/match.html', 'w') as file:
         file.write(match_html_content)
-
-    time.sleep(3)
     
     return render_template("match.html")
 
