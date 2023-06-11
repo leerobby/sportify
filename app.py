@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, abort, Response
 import mysql.connector
 from login import Login
 from date import date
@@ -58,7 +58,7 @@ def signin():
 
 @app.errorhandler(401)
 def page_not_found(e):
-    return Response('<p>Login failed</p>')
+    return Response('<p>Login failed</p><hr><p>Incorrect Password</p>')
 
 
 @app.route('/signup')
