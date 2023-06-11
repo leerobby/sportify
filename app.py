@@ -158,7 +158,19 @@ def match():
 
 @app.route('/create_match')
 def create_match():
-    return render_template("create_match.html")
+    #generate html file
+    create_match_file = open('templates/textFiles/create_match1.txt', 'r')
+    create_match_html_content = create_match_file.read()
+
+    create_match_html_content += f'<span> {cur_user.user_id} </span>'
+
+    dashboard_file = open('templates/textFiles/create_match2.txt', 'r')
+    create_match_html_content += dashboard_file.read()
+
+    #output html file
+    with open('templates/create_match2.html', 'w') as file:
+        file.write(create_match_html_content)
+    return render_template("create_match2.html")
 
 
 @app.route('/make_match', methods = ['GET', 'POST'])
