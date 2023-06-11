@@ -191,14 +191,11 @@ def join():
     sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
     cursor.execute(sqlform)
     matches = cursor.fetchall()
-    print(matches)
 
     #get match id from join button STR
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-    print(data)
-
     #if match is not full
     for row in matches:
         if int(match_id) == row[0]:
