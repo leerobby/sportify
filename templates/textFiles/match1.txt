@@ -12,18 +12,18 @@
     </head>
 
     <body>
-        fetch('/your-route')
+        <script>
+       fetch('/your-route')
   .then(response => response.json())
   .then(data => {
-    const message = data.message;
+    const message = JSON.stringify(data.message); // Convert message object to a string
     const redirect = data.redirect;
-    alert(String(message)); // Convert message to a string
+    alert(message);
     window.location.href = redirect;
   })
   .catch(error => {
     console.error('Error:', error);
   });
-
         </script>
         <div class="navbar">
             <nav class="navbar_header">
