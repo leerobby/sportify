@@ -196,15 +196,13 @@ def join():
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-    print(matches)
-    print(data)
+
 
     #if match is not full
     for row in matches:
         if int(match_id) == row[0]:
             #if joined player < player slot
             if row[2] < row[1]:
-                print(row[2], row[1])
 
                 #add data to db
                 sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
@@ -215,19 +213,13 @@ def join():
                 db.commit()
                 cursor.close()
 
-                message = 'Successfully joined match'
-                redirect = '/match'
-                response_data = {
-                    'message': message,
-                    'redirect': redirect
-                }
-                return jsonify(response_data)
+                return render_template("dashboard.html")
 
             else:
                 
-                return jsonify({'message': 'slot is full', 'redirect': '/match'}), 200, {'Location': '/match'}
+                return render_template("dashboard.html")
     
-    return redirect("/match")
+    return render_template("dashboard.html")
 
 
 @app.route('/create_match')
