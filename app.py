@@ -47,11 +47,18 @@ def signin():
             if password == row[1]:
                 cur_user.login(user_id, password)
                 return redirect("/dashboard")
+            else:
+                return abort(401)
 
     cursor.close()
 
     #if user id doesn't exist or password is incorrect
     return render_template('login.html')
+
+
+@app.errorhandler(401)
+def page_not_found(e):
+    return Response('<p>Login failed</p>')
 
 
 @app.route('/signup')
