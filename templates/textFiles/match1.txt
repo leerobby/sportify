@@ -8,17 +8,9 @@
         <title>Match</title>
 
         <link rel="stylesheet" href="{{ url_for('static', filename = 'match.css')}}">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
-        {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <script>
-      alert("{{ messages[0] }}");
-    </script>
-  {% endif %}
-{% endwith %}
         <div class="navbar">
             <nav class="navbar_header">
 
