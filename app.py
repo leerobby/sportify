@@ -171,8 +171,10 @@ def match():
         match_html_content += f'}});'
         match_html_content += f'}});'
         match_html_content += f'</script>'
+        count += 1
 
     match_file = open('templates/textFiles/match3.txt', 'r')
+    match_html_content += f'<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>'
     match_html_content += match_file.read()
 
     #output html file
