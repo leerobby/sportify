@@ -144,7 +144,7 @@ def match():
         for location in locations:
             if row[5] == location[0]:
                 match_loc = location[1]
-
+        
         match_html_content += f'<div class="grid_content">'
         day_month_string, suffix, year = date(row[0])
         match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
@@ -208,7 +208,10 @@ def join():
 
                 #add data to db
                 sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
-                cursor.execute(sqlform, (row[2], cur_user.user_id, row[1]))
+                cursor.execute(sqlform, (row[2], cur_user.user_id, row[0]))
+                db.commit()
+                sqlform = "UPDATE Matches SET joined_player = %s WHERE ID = %s"
+                cursor.execute(sqlform, (row[2]+1, row[0]))
                 db.commit()
                 cursor.close()
 
