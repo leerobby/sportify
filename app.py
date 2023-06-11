@@ -200,8 +200,10 @@ def join():
     #if match is not full
     for row in matches:
         if match_id == row[0]:
+            print("a")
             #if joined player < player slot
             if row[2] < row[1]:
+                print(row[2], row[1])
 
                 #add data to db
                 sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
