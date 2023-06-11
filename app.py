@@ -215,20 +215,17 @@ def join():
                 db.commit()
                 cursor.close()
 
-
-                response_message = f"Successfully joined match"
-                json_response = jsonify(response)
+                json_response = jsonify("Successfully joined match")
                 redirect_response = redirect('/match')
-                response = make_response(response_message)
+                response = make_response(json_response)
                 response.headers['Location'] = redirect_response.location
                 response.status_code = redirect_response.status_code
                 return response
 
             else:
-                response_message = f"Slot is full"
-                json_response = jsonify(response)
+                json_response = jsonify("Slot is full")
                 redirect_response = redirect('/match')
-                response = make_response(response_message)
+                response = make_response(json_response)
                 response.headers['Location'] = redirect_response.location
                 response.status_code = redirect_response.status_code
                 return response
