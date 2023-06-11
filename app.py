@@ -1,8 +1,5 @@
 from flask import Flask, request, render_template, redirect
 import mysql.connector
-import os
-from login import Login
-from date import date
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -154,7 +151,7 @@ def match():
     with open('templates/match.html', 'w') as file:
         file.write(match_html_content)
     
-    return render_template('templates/match.html')
+    return render_template("match.html")
 
 
 @app.route('/create_match')
@@ -228,13 +225,6 @@ def about():
         file.write(about_html_content)
     
     return render_template("about.html")
-
-
-@app.route('/logout')
-def logout():
-    cur_user = Login()
-    return render_template("login.html")
-
 
 
 if __name__ == '__main__':
