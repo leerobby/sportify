@@ -110,12 +110,6 @@ def dashboard():
 
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
-    #delete match.html
-    file_path = "templates/textFiles/match" + str(cur_user.count) + ".html"
-    if os.path.exists(file_path):
-        os.remove(file_path)
-        cur_user.file_count()
-
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
     cursor = db.cursor()
@@ -157,11 +151,10 @@ def match():
     match_html_content += match_file.read()
 
     #output html file
-    cur_file = 'templates/match' + str(cur_user.count) + '.html'
-    with open(cur_file, 'w') as file:
+    with open('templates/match.html', 'w') as file:
         file.write(match_html_content)
     
-    return render_template(cur_file)
+    return render_template('templates/match.html')
 
 
 @app.route('/create_match')
