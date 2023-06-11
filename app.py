@@ -16,6 +16,7 @@ db = mysql.connector.connect(
 )
 
 cur_user = Login()
+cur_file_count = 0
 
 @app.route('/')
 def home():
@@ -111,9 +112,10 @@ def dashboard():
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
     #delete match.html
-    file_path = "templates/textFiles.html"
+    file_path = "templates/textFiles/match" + str(cur_file_count) + ".html"
     if os.path.exists(file_path):
         os.remove(file_path)
+        cur_file_count += 1
 
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
@@ -156,10 +158,11 @@ def match():
     match_html_content += match_file.read()
 
     #output html file
-    with open('templates/match.html', 'w') as file:
+    cur_file = 'templates/match' + str(cur_file_count) + '.html'
+    with open(cur_file, 'w') as file:
         file.write(match_html_content)
     
-    return render_template("match.html")
+    return render_template(cur_file)
 
 
 @app.route('/create_match')
