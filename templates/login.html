@@ -7,34 +7,16 @@
     <meta charset = "UTF-8">
     <title>Login Page</title>
     <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'login.css')}}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('form').submit(function(event) {
-                event.preventDefault();  // Prevent the form from submitting
 
-                // Send an AJAX request to the Flask route
-                $.ajax({
-                    type: 'POST',
-                    url: '/login',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if ('error' in response) {
-                            // Display error message as a pop-up dialog
-                            alert(response.error);
-                        } else {
-                            // Handle successful login
-                            alert(response.success);
-                            // Redirect to a new page or perform other actions
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle AJAX request error
-                        alert('An error occurred while processing the request.');
-                    }
-                });
-            });
-        });
+    <script>
+        // Check if flash messages exist and display them as pop-up dialogs
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </script>
 </head>
 
