@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 import mysql.connector
+from login import Login
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -12,7 +13,7 @@ db = mysql.connector.connect(
     database = "mydb"
 )
 
-cur_user = ""
+cur_user = Login()
 
 @app.route('/')
 def home():
@@ -41,12 +42,12 @@ def signin():
     for row in result:
         if user_id == row[0]:
             if password == row[1]:
+                cur_user.login(cur_user.user_id, cur_user.password)
                 return redirect("/dashboard")
 
     cursor.close()
 
     #if user id doesn't exist or password is incorrect
-    cur_user = user_id
     return render_template('login.html')
 
 
@@ -127,10 +128,10 @@ def match():
     html_content += match_file.read()
 
     #output html file
-    with open('templates/match2.html', 'w') as file:
+    with open('templates/match.html', 'w') as file:
         file.write(html_content)
     
-    return render_template("match2.html")
+    return render_template("match.html")
 
 
 @app.route('/create_match')
@@ -164,7 +165,7 @@ def make_match():
     #add data to db
     sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db.cursor()
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user)]
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, user.user_id)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
