@@ -118,7 +118,7 @@ def dashboard():
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
     #fetch matches from db
-    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
+    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, joined_player, player_slot, host_name, ID FROM Matches"
     cursor = db.cursor()
     cursor.execute(sqlform)
     matches = cursor.fetchall()
@@ -139,6 +139,7 @@ def match():
     match_html_content += match_file.read()
 
     for row in matches:
+        count = 0
         for location in locations:
             if row[5] == location[0]:
                 match_loc = location[1]
@@ -152,7 +153,24 @@ def match():
         match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
         match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">\u20a9{row[6]}</p>'
         match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="join_button"></form></div>'
+        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
+        match_html_content += f'<script>'
+        match_html_content += f'$("button{count}").click(function() {{'
+        match_html_content += f'$.ajax({{'
+        match_html_content += f'url: "/button",'
+        match_html_content += f'type: "POST",'
+        match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
+        match_html_content += f'contentType: "application/json",'
+        match_html_content += f'success: function(response) {{'
+        match_html_content += f'alert(response);'
+        match_html_content += f'}},'
+        match_html_content += f'error: function(xhr, status, error) {{'
+        match_html_content += f'alert("An error occurred: " + error);'
+        match_html_content += f'}}'
+        match_html_content += f'}});'
+        match_html_content += f'}});'
+        match_html_content += f'}});'
+        match_html_content += f'</script>'
 
     match_file = open('templates/textFiles/match3.txt', 'r')
     match_html_content += match_file.read()
@@ -162,6 +180,37 @@ def match():
         file.write(match_html_content)
     
     return render_template("match.html")
+
+@app.route('/join')
+def join():
+    #fetch matches from db
+    cursor = db.cursor()
+    sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
+    cursor.execute(sqlform)
+    matches = cursor.fetchall()
+
+    #get match id from join button
+    data = request.get_json()
+    match_id = data['match_id']
+    joined_player = data['joined_player']
+
+
+    #if match is not full
+    if joined_player < player_slot:
+
+        #add data to db
+        sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
+        cursor.execute(sqlform, (joined_player, cur_user.user_id, match_id))
+        db.commit()
+        cursor.close()
+
+
+        response = f"Successfully joined match"
+        return jsonify(response)
+
+    else:
+        response = f"Slot is full"
+        return jsonify(response)
 
 
 @app.route('/create_match')
@@ -210,13 +259,13 @@ def make_match():
     cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, slot_left, player_0) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, joined_player, player_0) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1, cur_user.user_id)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
 
-    return render_template("dashboard.html")
+    return redirect("/match")
 
 
 @app.route('/about')
