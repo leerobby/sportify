@@ -9,6 +9,9 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename = 'match.css')}}">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
         <script>
         // Place the JavaScript code here
         fetch('/your-route')
@@ -25,9 +28,6 @@
                 console.error('Error:', error);
             });
         </script>
-    </head>
-
-    <body>
         <div class="navbar">
             <nav class="navbar_header">
 
