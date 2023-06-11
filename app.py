@@ -223,6 +223,9 @@ def join():
     
         return redirect(url_for('dashboard'))
 
+@app.route('/example')
+def example():
+    return redirect(url_for('dashboard'))
 
 @app.route('/create_match')
 def create_match():
