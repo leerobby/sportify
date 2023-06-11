@@ -109,6 +109,13 @@ def dashboard():
 
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
+    #refresh
+    db = mysql.connector.connect(
+    host = "34.22.79.75",
+    user = "root",
+    password = "alex050601",
+    database = "mydb"
+    )
 
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
