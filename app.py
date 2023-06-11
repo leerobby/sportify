@@ -164,7 +164,7 @@ def match():
         match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
         match_html_content += f'contentType: "application/json",'
         match_html_content += f'success: function(response) {{'
-        match_html_content += f'console.log(response);'
+        match_html_content += f' window.location.href = "/dashboard";'
         match_html_content += f'}},'
         match_html_content += f'error: function(xhr, status, error) {{'
         match_html_content += f'alert("An error occurred: " + error);'
@@ -213,11 +213,9 @@ def join():
                 db.commit()
                 cursor.close()
 
-                flash('Successfully joined match')
                 return redirect(url_for('dashboard'))
 
             else:
-                flash('Slot is full')
                 return redirect(url_for('dashboard'))
     
     
