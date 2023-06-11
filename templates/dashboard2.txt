@@ -1,0 +1,40 @@
+            </nav>
+
+            <div class="header_line"></div>
+
+            <div class="home_body">
+                <img src="{{ url_for('static', filename = 'img/ball.jpg')}}" alt="Football">
+                <div class="top_content">
+                    <h1>Play Hard<br>Sweat Hard</h1>
+                    <p>Unlock Your Athletic Potential: Embrace the Thrill of Competition, Discover Your Perfect
+                        Match, and Rise to Victory with our Sport Match Finding App!</p>
+                </div>
+            </div>
+
+            <div class="mid_body">
+                <div class="mid_content">
+                    <div class="in_content_left">
+                        <img src="{{ url_for('static', filename = 'img/player.png')}}" alt="Trent and Kai">
+                    </div>
+                    <div class="in_content_right">
+                        <div class="inside_content">
+                            <h2>Build your own rivalry</h2>
+                            <p>With our matching feature, you can find players to tag along in an intense competitive
+                                match!
+                            </p>
+                            <ul>
+                                <li>Free and without hassle.</li>
+                                <li>Match whenever, wherever you want.</li>
+                                <li>Safe and reliable.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </body>
+
+</html>
