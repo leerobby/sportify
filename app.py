@@ -213,11 +213,30 @@ def join():
                 db.commit()
                 cursor.close()
 
-                return render_template("dashboard.html")
+                message = 'successfully joined match'
+                redirect = '/match'
+
+                # Create a dictionary to hold the response data
+                response_data = {
+                    'message': message,
+                    'redirect': redirect
+                }
+
+                # Return the response as JSON
+                return jsonify(response_data)
 
             else:
-                
-                return render_template("dashboard.html")
+                message = 'slot is full'
+                redirect = '/match'
+
+                # Create a dictionary to hold the response data
+                response_data = {
+                    'message': message,
+                    'redirect': redirect
+                }
+
+                # Return the response as JSON
+                return jsonify(response_data)
     
     return render_template("dashboard.html")
 
