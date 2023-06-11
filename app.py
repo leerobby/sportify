@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, jsonify
+from flask import Flask, request, render_template, flash
 import mysql.connector
 from login import Login
 from date import date
@@ -46,11 +46,10 @@ def signin():
         if user_id == row[0]:
             if password == row[1]:
                 cur_user.login(user_id, password)
-                return jsonify({'success': 'Logged in successfully'})
                 return redirect("/dashboard")
             else:
-                error_message = 'Incorrect password. Please try again.'
-                return jsonify({'error': error_message})
+                flash('Incorrect password. Please try again.', 'error')
+                return render_template('login.html')
 
     cursor.close()
 
