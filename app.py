@@ -169,9 +169,9 @@ def create_match():
     create_match_html_content += dashboard_file.read()
 
     #output html file
-    with open('templates/create_match2.html', 'w') as file:
+    with open('templates/create_match.html', 'w') as file:
         file.write(create_match_html_content)
-    return render_template("create_match2.html")
+    return render_template("create_match.html")
 
 
 @app.route('/make_match', methods = ['GET', 'POST'])
