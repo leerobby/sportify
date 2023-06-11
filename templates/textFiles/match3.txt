@@ -1,0 +1,15 @@
+                            <form action="#">
+                                <input type="button" value="Join Match" class="custom-button" id="join_button">
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
