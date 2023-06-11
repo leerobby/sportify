@@ -184,47 +184,37 @@ def match():
     
     return render_template("match.html")
 
-@app.route('/join', methods=['POST'])
+@app.route('/join', methods = ['POST'])
 def join():
+    #fetch matches from db
+    cursor = db.cursor()
+    sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
+    cursor.execute(sqlform)
+    matches = cursor.fetchall()
+
+    #get match id from join button
     data = request.get_json()
-    print(data)
-    button_data = data['match_id']#data here
-    button_data2 = data['joined_player']
-    print(button_data, button_data2)
-    response = f"Successfully joined match"
-    return jsonify(response)
-    
-# @app.route('/join', methods = ['POST'])
-# def join():
-#     #fetch matches from db
-#     cursor = db.cursor()
-#     sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
-#     cursor.execute(sqlform)
-#     matches = cursor.fetchall()
-
-#     #get match id from join button
-#     data = request.get_json()
-#     match_id = data['match_id']
-#     joined_player = data['joined_player']
-#     print(match_id, joined_player)
+    match_id = data['match_id']
+    joined_player = data['joined_player']
+    print(match_id, joined_player)
 
 
-#     #if match is not full
-#     if joined_player < player_slot:
+    #if match is not full
+    if joined_player < player_slot:
 
-#         #add data to db
-#         sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
-#         cursor.execute(sqlform, (joined_player, cur_user.user_id, match_id))
-#         db.commit()
-#         cursor.close()
+        #add data to db
+        sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
+        cursor.execute(sqlform, (joined_player, cur_user.user_id, match_id))
+        db.commit()
+        cursor.close()
 
 
-#         response = f"Successfully joined match"
-#         return jsonify(response)
+        response = f"Successfully joined match"
+        return jsonify(response)
 
-#     else:
-#         response = f"Slot is full"
-#         return jsonify(response)
+    else:
+        response = f"Slot is full"
+        return jsonify(response)
 
 
 @app.route('/create_match')
