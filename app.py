@@ -164,11 +164,7 @@ def match():
         match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
         match_html_content += f'contentType: "application/json",'
         match_html_content += f'success: function(response) {{'
-        match_html_content += f'if (response.message) {{'
-        match_html_content += f' alert("Successfully join match);'
-        match_html_content += f'}} else {{'
-        match_html_content += f'alert("Slot is full");'
-        match_html_content += f'}}'
+        match_html_content += f'console.log(response);'
         match_html_content += f'}},'
         match_html_content += f'error: function(xhr, status, error) {{'
         match_html_content += f'alert("An error occurred: " + error);'
@@ -217,10 +213,10 @@ def join():
                 db.commit()
                 cursor.close()
 
-                return jsonify({'message': True})
+                return redirect(url_for('dashboard'))
 
             else:
-                return jsonify({'message': False})
+                return redirect(url_for('dashboard'))
     
     
         return redirect(url_for('dashboard'))
