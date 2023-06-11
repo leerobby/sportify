@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'about.css')}}">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <nav class="navbar_header">
+
+                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify"
+                    class="sportify_logo">
+
+                <ul class="navbar_links">
+                    <li><a href="dashboard">Home</a></li>
+                    <li><a href="match">Match</a></li>
+                    <li><a href="about">About</a></li>
+                </ul>
+
+                <div class="navigation">
+
+                    <a class="button" href="login">
+                        <img src="{{ url_for('static', filename = 'img/user.png')}}">
+
+                        <div class="logout">LOGOUT</div>
+
+                    </a>
+
+                </div>
