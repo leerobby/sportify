@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 # import mysql.connector
+from login import Login
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -13,6 +14,8 @@ app = Flask(__name__, template_folder = "templates")
 # )
 
 users = [{'user_id': 'admin', 'password': 'admin', 'first_name': 'admin', 'last_name': 'admin', 'gender': 'male'}]
+
+cur_user = Login()
 
 @app.route('/')
 def home():
@@ -46,6 +49,8 @@ def signin():
     for user in users:
         if user['user_id'] == user_id:
             if user['password'] == password:
+                cur_user.login(user_id, password)
+                print(cur_user.user_id, cur_user.password)
                 return redirect("/dashboard")
 
     # cursor.close()
