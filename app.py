@@ -136,8 +136,9 @@ def match():
                 match_loc = location[1]
 
         match_html_content += f'<div class="grid_content">'
+        print(row[0])
         day_month_string, suffix, year = date(row[0])
-        match_html_content += f'<span>{date_month_string}<sp>{suffix}</sp> {year} &bull; {row[1]}</span><hr>'
+        match_html_content += f'<span>{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
         match_html_content += f'<p id="event_name">{row[2]}</p>'
         match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
         match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
