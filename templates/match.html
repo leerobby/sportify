@@ -14,7 +14,8 @@
         <div class="navbar">
             <nav class="navbar_header">
 
-                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify" class="sportify_logo">
+                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify"
+                    class="sportify_logo">
 
                 <ul class="navbar_links">
                     <li><a href="dashboard">Home</a></li>
@@ -25,6 +26,7 @@
                 <form action="#">
                     <input type="button" value="Sign in" class="sign_in_button">
                 </form>
+                <span>Dummy's Profile</span>
 
             </nav>
 
@@ -59,13 +61,16 @@
                 </div>
                 <div class="match_input">
                     <form action="#" class="form_input">
-                        <label for="search"><img src="{{ url_for('static', filename = 'img/magnifyingGlass.png')}}" alt="Search Icon"></label>
+                        <label for="search"><img src="{{ url_for('static', filename = 'img/magnifyingGlass.png')}}"
+                                alt="Search Icon"></label>
                         <input type="text" id="search" name="search" placeholder="Search event name">
 
-                        <label for="city"><img src="{{ url_for('static', filename = 'img/building.png')}}" alt="City Icon"></label>
+                        <label for="city"><img src="{{ url_for('static', filename = 'img/building.png')}}"
+                                alt="City Icon"></label>
                         <input type="text" id="city" name="city" placeholder="Choose a city">
 
-                        <label for="sport"><img src="{{ url_for('static', filename = 'img/stickFigure.png')}}" alt="Sport Icon"></label>
+                        <label for="sport"><img src="{{ url_for('static', filename = 'img/stickFigure.png')}}"
+                                alt="Sport Icon"></label>
                         <select name="sport" id="sport">
                             <option value="">-- Pick desired sport --</option>
                             <option value="futsal">Futsal</option>
@@ -105,7 +110,7 @@
                             <span>Price</span><br>
                             <span>Host Name</span><br>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

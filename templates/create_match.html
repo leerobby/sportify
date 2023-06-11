@@ -14,7 +14,8 @@
         <div class="navbar">
             <nav class="navbar_header">
 
-                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify" class="sportify_logo">
+                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify"
+                    class="sportify_logo">
 
                 <ul class="navbar_links">
                     <li><a href="dashboard">Home</a></li>
@@ -25,6 +26,7 @@
                 <form action="#">
                     <input type="button" value="Sign in" class="sign_in_button">
                 </form>
+                <span>Dummy's Profile</span>
 
             </nav>
 
@@ -35,7 +37,7 @@
                     <h1>Create Your Match</h1>
                     <div class="mid_container">
 
-                        <form method = "post" action="/make_match" id = "form" class="form_container">
+                        <form method="post" action="/make_match" id="form" class="form_container">
                             <div class="left_content">
 
 
@@ -134,35 +136,43 @@
                                         <li>
                                             <input type="checkbox" name="k_pay" id="k_pay">
                                             <label for="k_pay">Kakao
-                                                Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}" alt="k_pay logo"></label>
+                                                Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}"
+                                                    alt="k_pay logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="n_pay" id="n_pay">
                                             <label for="n_pay">Naver
-                                                Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}" alt="n_pay logo"></label>
+                                                Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}"
+                                                    alt="n_pay logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="payco" id="payco">
-                                            <label for="payco">Payco<img src="{{ url_for('static', filename = 'img/paycoLogo.png')}}" alt="payco logo"></label>
+                                            <label for="payco">Payco<img
+                                                    src="{{ url_for('static', filename = 'img/paycoLogo.png')}}"
+                                                    alt="payco logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="t_pay" id="t_pay">
                                             <label for="t_pay">Toss
-                                                Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}" alt="t_pay logo"></label>
+                                                Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}"
+                                                    alt="t_pay logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="s_pay" id="s_pay">
                                             <label for="s_pay">Smile
-                                                Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}" alt="s_pay logo"></label>
+                                                Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}"
+                                                    alt="s_pay logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="card" id="card">
-                                            <label for="card">Card Payment<img src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
+                                            <label for="card">Card Payment<img
+                                                    src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
                                                     alt="card logo"></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="cos" id="cos">
-                                            <label for="cos">Cash on Site<img src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
+                                            <label for="cos">Cash on Site<img
+                                                    src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
                                                     alt="cash logo"></label>
                                         </li>
                                     </ul>
@@ -170,7 +180,8 @@
 
                                 <!-- Create Button -->
                                 <div class="div_container" id="create_button">
-                                    <input type="button" value="Create Match" class="custom-button" onclick="submitForms()">
+                                    <input type="button" value="Create Match" class="custom-button"
+                                        onclick="submitForms()">
                                 </div>
 
                             </div>
@@ -188,7 +199,7 @@
         </div>
 
 
-    <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
+        <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
     </body>
 
 </html>
