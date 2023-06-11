@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect
 import mysql.connector
 from login import Login
 from date import date
+import time
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -136,7 +137,6 @@ def match():
                 match_loc = location[1]
 
         match_html_content += f'<div class="grid_content">'
-        print(row[0])
         day_month_string, suffix, year = date(row[0])
         match_html_content += f'<span>{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
         match_html_content += f'<p id="event_name">{row[2]}</p>'
@@ -153,6 +153,8 @@ def match():
     #output html file
     with open('templates/match.html', 'w') as file:
         file.write(match_html_content)
+
+    time.sleep(3)
     
     return render_template("match.html")
 
