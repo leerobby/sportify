@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash, jsonify
+from flask import Flask, request, render_template, redirect, flash, jsonify, make_response
 import mysql.connector
 from login import Login
 from date import date
@@ -215,12 +215,7 @@ def join():
                 db.commit()
                 cursor.close()
 
-                json_response = jsonify("Successfully joined match")
-                redirect_response = redirect('/match')
-                response = make_response(json_response)
-                response.headers['Location'] = redirect_response.location
-                response.status_code = redirect_response.status_code
-                return response
+                return redirect('/match')
 
             else:
                 json_response = jsonify("Slot is full")
