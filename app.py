@@ -230,5 +230,12 @@ def about():
     return render_template("about.html")
 
 
+@app.route('/logout')
+def logout():
+    cur_user = Login()
+    return render_template("login.html")
+
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
