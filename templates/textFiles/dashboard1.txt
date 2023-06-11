@@ -25,7 +25,7 @@
 
                 <div class="navigation">
 
-                    <a class="button" action = "/logout">
+                    <a class="button" href = "login">
                         <img src="{{ url_for('static', filename = 'img/user.png')}}">
 
                         <div class="logout">LOGOUT</div>
