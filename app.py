@@ -3,9 +3,9 @@ import mysql.connector
 from login import Login
 from date import date
 
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-
 app = Flask(__name__, template_folder = "templates")
+
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 db_url = 'mysql+pymysql://'
 
