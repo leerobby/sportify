@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash
+from flask import Flask, request, render_template, redirect, flash, jsonify
 import mysql.connector
 from login import Login
 from date import date
@@ -138,8 +138,9 @@ def match():
     match_file = open('templates/textFiles/match2.txt', 'r')
     match_html_content += match_file.read()
 
+    count = 0
+
     for row in matches:
-        count = 0
         for location in locations:
             if row[5] == location[0]:
                 match_loc = location[1]
@@ -184,7 +185,7 @@ def match():
     
     return render_template("match.html")
 
-@app.route('/join')
+@app.route('/join', methods = ['POST'])
 def join():
     #fetch matches from db
     cursor = db.cursor()
@@ -196,6 +197,7 @@ def join():
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
+    print(match_id, joined_player)
 
 
     #if match is not full
