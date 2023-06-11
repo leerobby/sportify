@@ -186,21 +186,22 @@ def match():
 
 @app.route('/join', methods = ['POST'])
 def join():
-    #fetch matches from db
+    #fetch matches from db INT
     cursor = db.cursor()
     sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
     cursor.execute(sqlform)
     matches = cursor.fetchall()
 
-    #get match id from join button
+    #get match id from join button STR
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
+    print(matches)
+    print(data)
 
     #if match is not full
     for row in matches:
-        if match_id == row[0]:
-            print("a")
+        if int(match_id) == row[0]:
             #if joined player < player slot
             if row[2] < row[1]:
                 print(row[2], row[1])
@@ -269,7 +270,7 @@ def make_match():
 
     #add data to db
     sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, joined_player, player_0) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, "1", cur_user.user_id)]
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1, cur_user.user_id)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
