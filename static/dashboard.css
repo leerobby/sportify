@@ -21,12 +21,8 @@ body {
 }
 
 .navbar {
-    top: 0;
-    left: 0;
-    right: 0;
     height: 100%;
     width: 100%;
-    z-index: 9999;
 }
 
 .navbar_header {
@@ -34,6 +30,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.navbar_header span {
+    position: absolute;
+    top: 1em;
+    right: 1em;
 }
 
 .navbar_links {
