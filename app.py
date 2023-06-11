@@ -215,8 +215,13 @@ def join():
                 db.commit()
                 cursor.close()
 
-                return jsonify({'message': 'successfully joined match', 'redirect': '/match'}), 200, {'Location': '/match'}
-
+                message = 'Successfully joined match'
+                redirect = '/match'
+                response_data = {
+                    'message': message,
+                    'redirect': redirect
+                }
+                return jsonify(response_data)
 
             else:
                 
