@@ -87,28 +87,26 @@
                 <div class="grid_container">
                     <div class="grid_layout">
                         <div class="grid_content">
-                            <span>Sun, June 25<sup>th</sup> 2023 &bull; 8:00</span><br>
-                            <span>Event Name</span><br>
-                            <span>Sports Type</span><br>
-                            <span>Location</span><br>
-                            <span>Price</span><br>
-                            <span>Host Name</span><br>
-                        </div>
-                        <div class="grid_content">
-                            <span>Sun, June 25<sup>th</sup> 2023 &bull; 8:00</span><br>
-                            <span>Event Name</span><br>
-                            <span>Sports Type</span><br>
-                            <span>Location</span><br>
-                            <span>Price</span><br>
-                            <span>Host Name</span><br>
-                        </div>
-                        <div class="grid_content">
-                            <span>Sun, June 25<sup>th</sup> 2023 &bull; 8:00</span><br>
-                            <span>Event Name</span><br>
-                            <span>Sports Type</span><br>
-                            <span>Location</span><br>
-                            <span>Price</span><br>
-                            <span>Host Name</span><br>
+                            <span id="date_time">Sun, June 25<sup>th</sup> 2023 &bull; 8:00</span>
+                            <hr>
+                            <p id="event_name">Event Name</p> <!-- Needs to be limited -->
+                            <p id="sport_type"><img src="{{ url_for('static', filename = 'img/sport.png')}}"
+                                    alt="Sport Icon">Sport's Type</p>
+                            <p id="gender"><img src="{{ url_for('static', filename = 'img/gender-fluid.png')}}"
+                                    alt="Sport Icon">Gender</p>
+                            <p id="location"><img src="{{ url_for('static', filename = 'img/location.png')}}"
+                                    alt="Location Icon">Location</p>
+                            <p id="price"><img src="{{ url_for('static', filename = 'img/price-tag.png')}}"
+                                    alt="Price Icon">Price</p>
+                            <p id="player_slot">Player Slot</p>
+                            <hr class="dashed">
+                            <h3>Host</h3>
+                            <p id="host_name">Alexander Simon Petrus</p>
+
+                            <form action="#">
+                                <input type="button" value="Join Match" class="custom-button" id="join_button">
+                            </form>
+
                         </div>
 
                     </div>

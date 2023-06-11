@@ -37,6 +37,7 @@ body {
     position: absolute;
     top: 1em;
     right: 1em;
+    font-style: italic;
 }
 
 .navbar_links {

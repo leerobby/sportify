@@ -38,6 +38,7 @@ body {
     position: absolute;
     top: 1em;
     right: 1em;
+    font-style: italic;
 }
 
 .navbar_links {
@@ -279,8 +280,8 @@ path.two {
     position: relative;
     left: 10%;
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     width: 80%;
     height: auto;
 }
@@ -288,20 +289,62 @@ path.two {
 .grid_layout {
     display: grid;
     grid-template-columns: 400px 400px 400px;
-    /* Rows need to change to auto */
-    grid-template-rows: 400px 400px 400px;
+    grid-template-rows: auto auto auto;
     gap: 20px;
+    font-family: 'Comic Sans', sans-serif;
 }
 
-.grid_layout .grid_content {
+.grid_content {
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 1em;
     transition: box-shadow .3s;
-    padding: 20px;
-    font-size: 20px;
+    padding: 10px 25px;
 }
 
-.grid_layout .grid_content:hover {
+.grid_content:hover {
     box-shadow: 0 0 30px rgba(33, 33, 33, .2);
+}
+
+.grid_content p {
+    margin: 15px 5px;
+}
+
+.grid_content h3 {
+    margin: 10px 0;
+}
+
+.grid_content img {
+    width: 25px;
+    height: auto;
+    margin: 0 10px;
+}
+
+.grid_content #date_time {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: rgb(255, 32, 32);
+}
+
+.grid_content #event_name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.grid_content #sport_type,
+.grid_content #location,
+.grid_content #price,
+.grid_content #host_name,
+.grid_content #player_slot {
+    font-size: 17px;
+}
+
+.grid_content form {
+    text-align: center;
+    padding: 5px 0;
+}
+
+#join_button {
+    margin: 0;
 }
