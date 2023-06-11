@@ -9,6 +9,22 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename = 'match.css')}}">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        // Place the JavaScript code here
+        fetch('/your-route')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Display the JSON response in the console
+                // Access individual values
+                console.log(data.message); // "success"
+                console.log(data.redirect); // "/match"
+                // Redirect to the specified URL
+                window.location.href = data.redirect;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        </script>
     </head>
 
     <body>
