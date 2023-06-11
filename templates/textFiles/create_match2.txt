@@ -1,0 +1,175 @@
+            </nav>
+
+            <div class="header_line"></div>
+
+            <div class="body_container">
+                <div class="main_body">
+                    <h1>Create Your Match</h1>
+                    <div class="mid_container">
+
+                        <form method="post" action="/make_match" id="form" class="form_container">
+                            <div class="left_content">
+
+
+                                <!-- Event Name -->
+                                <div class="div_container">
+                                    <label for="event_name">Event Name</label>
+                                    <input type="text" id="event_name" name="event_name" placeholder="Make it striking!"
+                                        required>
+                                </div>
+
+                                <!-- Sport Type -->
+                                <div class="div_container">
+                                    <label for="sport">Sport type</label>
+                                    <select name="sport" id="sport">
+                                        <option value="">-- Pick desired sport --</option>
+                                        <option value="futsal">Futsal</option>
+                                        <option value="basketball">Basketball</option>
+                                        <option value="badminton">Badminton</option>
+                                        <option value="tennis">Tennis</option>
+                                    </select>
+                                </div>
+
+                                <!-- Player Slot -->
+                                <div class="div_container">
+                                    <label for="p_num">Player Slot</label>
+                                    <input type="number" name="p_num" id="p_num" min="1" max="10" value="2">
+                                </div>
+
+                                <!-- Location -->
+                                <div class="div_container">
+                                    <label for="location">Location</label>
+                                    <select name="location" id="location">
+                                        <option value="210001">The Futsal Park</option>
+                                        <option value="210002">BOSC Best One Futsal Park</option>
+                                        <option value="210003">Sky Field</option>
+                                        <option value="210004">Sports Island Futsal Field</option>
+                                        <option value="210005">EK Futsal Park</option>
+                                        <option value="220001">K & D Basketball Chodang Branch</option>
+                                        <option value="220002">Osan Sports Complex</option>
+                                        <option value="220003">Suwon Youth Culture Center</option>
+                                        <option value="220004">Seongnam Sports Complex</option>
+                                        <option value="220005">Seosuwon Chilbo Sports Center</option>
+                                        <option value="230001">Dongtan Badminton Court</option>
+                                        <option value="230002">Seoho Sports Center</option>
+                                        <option value="230003">Sukji Park Multipurpose Sports Center</option>
+                                        <option value="230004">Maetan Multipurpose Sports Center</option>
+                                        <option value="230005">On & Off Sports</option>
+                                        <option value="240001">Soleas Tennis Bundang Ori Branch</option>
+                                        <option value="240002">I Am Indoor Tennis</option>
+                                        <option value="240003">Eonjena Tennis</option>
+                                        <option value="240004">Riverside Tennis Court</option>
+                                        <option value="240005">Suji Sports Park</option>
+                                    </select>
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="div_container">
+                                    <label for="female">Female Only:</label>
+                                    <input type="radio" name="gender" id="female" value="female">
+                                    <label for="male">Male Only:</label>
+                                    <input type="radio" name="gender" id="male" value="male">
+                                    <label for="mix">Mix:</label>
+                                    <input type="radio" name="gender" id="mix" value="mix">
+                                </div>
+
+                                <!-- Date & Time -->
+                                <div class="div_container">
+                                    <label for="date_time">Set the Date</label>
+                                    <input type="datetime-local" name="date_time" id="date_time">
+                                </div>
+
+                                <!-- Description -->
+                                <div class="div_container">
+                                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                                    <label for="description">Description</label>
+
+                                </div>
+                            </div>
+
+                            <div class="right_content">
+
+                                <!-- Price -->
+                                <div class="div_container">
+                                    <label for="price">Price</label>
+                                    <div class="price-input-container">
+                                        <input type="text" id="price" name="price" placeholder="Enter the price"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <!-- Payment Method -->
+                                <div class="div_container">
+                                    <h4>Payment Method</h4>
+
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" name="k_pay" id="k_pay">
+                                            <label for="k_pay">Kakao
+                                                Pay<img src="{{ url_for('static', filename = 'img/kakaopayLogo.png')}}"
+                                                    alt="k_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="n_pay" id="n_pay">
+                                            <label for="n_pay">Naver
+                                                Pay<img src="{{ url_for('static', filename = 'img/naverpayLogo.png')}}"
+                                                    alt="n_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="payco" id="payco">
+                                            <label for="payco">Payco<img
+                                                    src="{{ url_for('static', filename = 'img/paycoLogo.png')}}"
+                                                    alt="payco logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="t_pay" id="t_pay">
+                                            <label for="t_pay">Toss
+                                                Pay<img src="{{ url_for('static', filename = 'img/tossLogo.png')}}"
+                                                    alt="t_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="s_pay" id="s_pay">
+                                            <label for="s_pay">Smile
+                                                Pay<img src="{{ url_for('static', filename = 'img/smilepayLogo.png')}}"
+                                                    alt="s_pay logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="card" id="card">
+                                            <label for="card">Card Payment<img
+                                                    src="{{ url_for('static', filename = 'img/cardLogo.png')}}"
+                                                    alt="card logo"></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="cos" id="cos">
+                                            <label for="cos">Cash on Site<img
+                                                    src="{{ url_for('static', filename = 'img/cashLogo.png')}}"
+                                                    alt="cash logo"></label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Create Button -->
+                                <div class="div_container" id="create_button">
+                                    <input type="button" value="Create Match" class="custom-button"
+                                        onclick="submitForms()">
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="extra_space"></div>
+
+        </div>
+
+
+        <script src="{{ url_for('static', filename = 'create_match.js')}}"></script>
+    </body>
+
+</html>
