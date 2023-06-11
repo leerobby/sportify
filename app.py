@@ -90,7 +90,19 @@ def register():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html")
+    #generate html file
+    dashboard_file = open('templates/textFiles/about1.txt', 'r')
+    dashboard_html_content = dashboard_file.read()
+
+    dashboard_html_content += f'<span> {cur_user.user_id} </span>'
+
+    dashboard_file = open('templates/textFiles/about2.txt', 'r')
+    dashboard_html_content += dashboard_file.read()
+
+    #output html file
+    with open('templates/dashboard2.html', 'w') as file:
+        file.write(dashboard_html_content)
+    return render_template("dashboard2.html")
 
 
 @app.route('/match', methods = ['GET', 'POST'])
