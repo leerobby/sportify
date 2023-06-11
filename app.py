@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 import mysql.connector
+import datetime
 from login import Login
 
 app = Flask(__name__, template_folder = "templates")
@@ -42,7 +43,7 @@ def signin():
     for row in result:
         if user_id == row[0]:
             if password == row[1]:
-                cur_user.login(cur_user.user_id, cur_user.password)
+                cur_user.login(user_id, password)
                 return redirect("/dashboard")
 
     cursor.close()
@@ -104,12 +105,14 @@ def dashboard():
         file.write(dashboard_html_content)
     return render_template("dashboard2.html")
 
+    return render_template("dashboard.html")
+
 
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
 
     #fetch matches from db
-    sqlform = "SELECT date, time, event_name, sport_type, location_id, price, host_name FROM Matches"
+    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
     cursor = db.cursor()
     cursor.execute(sqlform)
     matches = cursor.fetchall()
@@ -124,20 +127,27 @@ def match():
     match_file = open('templates/textFiles/match1.txt', 'r')
     match_html_content = match_file.read()
 
+    match_html_content += f'<span> {cur_user.user_id} </span>'
+
+    match_file = open('templates/textFiles/match2.txt', 'r')
+    match_html_content += match_file.read()
+
     for row in matches:
         for location in locations:
-            if row[4] == location[0]:
+            if row[5] == location[0]:
                 match_loc = location[1]
 
         match_html_content += f'<div class="grid_content">'
-        match_html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
-        match_html_content += f'<span>{row[2]}</span><br>'
-        match_html_content += f'<span>{row[3]}</span><br>'
-        match_html_content += f'<span>{match_loc}</span><br>'
-        match_html_content += f'<span>{row[5]}</span><br>'
-        match_html_content += f'<span>{row[6]}</span><br> </div>'
+        match_html_content += f'<span>{row[0]} &bull; {row[1]}</span><hr>'
+        match_html_content += f'<p id="event_name">{row[2]}</p>'
+        match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
+        match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
+        match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
+        match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">{row[6]}</p>'
+        match_html_content += f'<p id="player_slot">{row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
+        match_html_content += f'<p id="host_name">{row[9]}</p>'
 
-    match_file = open('templates/textFiles/match2.txt', 'r')
+    match_file = open('templates/textFiles/match3.txt', 'r')
     match_html_content += match_file.read()
 
     #output html file
