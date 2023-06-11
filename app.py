@@ -213,9 +213,11 @@ def join():
                 db.commit()
                 cursor.close()
 
+                flash('Successfully joined match')
                 return redirect("/match")
 
             else:
+                flash('Slot is full')
                 return redirect("/match")
     
     return redirect("/match")
