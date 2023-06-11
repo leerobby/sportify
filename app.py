@@ -101,10 +101,10 @@ def dashboard():
     dashboard_html_content += dashboard_file.read()
 
     #output html file
-    with open('templates/dashboard2.html', 'w') as file:
+    with open('templates/dashboard.html', 'w') as file:
         file.write(dashboard_html_content)
 
-    return render_template("dashboard2.html")
+    return render_template("dashboard.html")
 
 
 @app.route('/match', methods = ['GET', 'POST'])
@@ -211,10 +211,10 @@ def about():
     about_html_content += about_file.read()
 
     #output html file
-    with open('templates/about2.html', 'w') as file:
+    with open('templates/about.html', 'w') as file:
         file.write(about_html_content)
     
-    return render_template("about2.html")
+    return render_template("about.html")
 
 
 if __name__ == '__main__':
