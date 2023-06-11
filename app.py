@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash, jsonify, make_response
+from flask import Flask, request, render_template, redirect, flash, jsonify, make_response, url_for
 import mysql.connector
 from login import Login
 from date import date
@@ -154,7 +154,7 @@ def match():
         match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
         match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
         match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
+        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}" a href="{{{{ url_for("match") }}}}"></form></div>'
         match_html_content += f'<script>'
         match_html_content += f'$(document).ready(function() {{'
         match_html_content += f'$("#button{count}").click(function() {{'
@@ -214,13 +214,14 @@ def join():
                 cursor.close()
 
                 flash('Successfully joined match')
-                return redirect("/match")
+                return redirect(url_for('dashboard'))
 
             else:
                 flash('Slot is full')
-                return redirect("/match")
+                return redirect(url_for('dashboard'))
     
-    return redirect("/match")
+    
+        return redirect(url_for('dashboard'))
 
 
 @app.route('/create_match')
