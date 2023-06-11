@@ -12,20 +12,7 @@
     </head>
 
     <body>
-        <script>
-       fetch('/match')
-  .then(response => response.json())
-  .then(data => {
-    const message = data.message;
-    const redirect = data.redirect;
-    alert(JSON.stringify(message)); // Convert message to a string
-    window.location.href = redirect;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-        </script>
+       
         <div class="navbar">
             <nav class="navbar_header">
 
