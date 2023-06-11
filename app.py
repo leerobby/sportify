@@ -154,7 +154,7 @@ def match():
         match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
         match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
         match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}" a href="{{{{ url_for("join") }}}}"></form></div>'
+        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
         match_html_content += f'<script>'
         match_html_content += f'$(document).ready(function() {{'
         match_html_content += f'$("#button{count}").click(function() {{'
@@ -196,7 +196,8 @@ def join():
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-
+    print(matches)
+    print(data)
 
     #if match is not full
     for row in matches:
