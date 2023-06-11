@@ -163,7 +163,12 @@ def create_match():
 
 @app.route('/make_match', methods = ['GET', 'POST'])
 def make_match():
-    cur_match_id = 1
+    #fetch matches from db
+    sqlform = "SELECT ID FROM Matches"
+    cursor = db.cursor()
+    cursor.execute(sqlform)
+    matches = cursor.fetchall()
+    cur_match_id = len(matches) + 1
 
     #input
     event_name = request.form.get("event_name")
@@ -186,13 +191,10 @@ def make_match():
 
     #add data to db
     sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    cursor = db.cursor()
     match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, user.user_id)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
-
-    cur_match_id += 1
 
     return render_template("dashboard.html")
 
