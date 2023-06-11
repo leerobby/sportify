@@ -164,7 +164,7 @@ def match():
         match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
         match_html_content += f'contentType: "application/json",'
         match_html_content += f'success: function(response) {{'
-        match_html_content += f'console.log(response);'
+        match_html_content += f'alert(response);'
         match_html_content += f'}},'
         match_html_content += f'error: function(xhr, status, error) {{'
         match_html_content += f'alert("An error occurred: " + error);'
@@ -191,12 +191,12 @@ def join():
     sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
     cursor.execute(sqlform)
     matches = cursor.fetchall()
+    print(matches)
 
     #get match id from join button STR
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-    print(matches)
     print(data)
 
     #if match is not full
