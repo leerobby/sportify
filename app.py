@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, abort, Response
+from flask import Flask, request, render_template, redirect, jsonify
 import mysql.connector
 from login import Login
 from date import date
@@ -46,19 +46,16 @@ def signin():
         if user_id == row[0]:
             if password == row[1]:
                 cur_user.login(user_id, password)
+                return jsonify({'success': 'Logged in successfully'})
                 return redirect("/dashboard")
             else:
-                return abort(401)
+                error_message = 'Incorrect password. Please try again.'
+                return jsonify({'error': error_message})
 
     cursor.close()
 
     #if user id doesn't exist or password is incorrect
     return render_template('login.html')
-
-
-@app.errorhandler(401)
-def page_not_found(e):
-    return Response('<p>Login failed</p><hr><p>Incorrect Password</p>')
 
 
 @app.route('/signup')
