@@ -12,22 +12,18 @@
     </head>
 
     <body>
-        <script>
-        // Place the JavaScript code here
-        fetch('/match')
+        fetch('/your-route')
   .then(response => response.json())
   .then(data => {
-    // Access the specific values from the JSON response
     const message = data.message;
     const redirect = data.redirect;
-    // Display the message in a pop-up
-    alert(message);
-    // Redirect to the specified URL
+    alert(String(message)); // Convert message to a string
     window.location.href = redirect;
   })
   .catch(error => {
     console.error('Error:', error);
   });
+
         </script>
         <div class="navbar">
             <nav class="navbar_header">
