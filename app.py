@@ -109,14 +109,6 @@ def dashboard():
 
 @app.route('/match', methods = ['GET', 'POST'])
 def match():
-    #refresh
-    db = mysql.connector.connect(
-    host = "34.22.79.75",
-    user = "root",
-    password = "alex050601",
-    database = "mydb"
-    )
-
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
     cursor = db.cursor()
@@ -197,8 +189,8 @@ def make_match():
     cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id)]
+    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, slot_left) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
