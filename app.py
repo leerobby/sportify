@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 import mysql.connector
+import datetime
 from login import Login
 
 app = Flask(__name__, template_folder = "templates")
@@ -42,7 +43,7 @@ def signin():
     for row in result:
         if user_id == row[0]:
             if password == row[1]:
-                cur_user.login(cur_user.user_id, cur_user.password)
+                cur_user.login(user_id, password)
                 return redirect("/dashboard")
 
     cursor.close()
@@ -90,6 +91,20 @@ def register():
 
 @app.route('/dashboard')
 def dashboard():
+    #generate html file
+    dashboard_file = open('templates/textFiles/about1.txt', 'r')
+    dashboard_html_content = dashboard_file.read()
+
+    dashboard_html_content += f'<span> {cur_user.user_id} </span>'
+
+    dashboard_file = open('templates/textFiles/about2.txt', 'r')
+    dashboard_html_content += dashboard_file.read()
+
+    #output html file
+    with open('templates/dashboard2.html', 'w') as file:
+        file.write(dashboard_html_content)
+    return render_template("dashboard2.html")
+
     return render_template("dashboard.html")
 
 
@@ -97,7 +112,7 @@ def dashboard():
 def match():
 
     #fetch matches from db
-    sqlform = "SELECT date, time, event_name, sport_type, location_id, price, host_name FROM Matches"
+    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, slot_left, player_slot, host_name FROM Matches"
     cursor = db.cursor()
     cursor.execute(sqlform)
     matches = cursor.fetchall()
@@ -106,30 +121,38 @@ def match():
     sqlform = "SELECT ID, venue_name FROM Location"
     cursor.execute(sqlform)
     locations = cursor.fetchall()
+    cursor.close()
 
     #generate html file
-    match_file = open('templates/match1.txt', 'r')
-    html_content = match_file.read()
+    match_file = open('templates/textFiles/match1.txt', 'r')
+    match_html_content = match_file.read()
+
+    match_html_content += f'<span> {cur_user.user_id} </span>'
+
+    match_file = open('templates/textFiles/match2.txt', 'r')
+    match_html_content += match_file.read()
 
     for row in matches:
         for location in locations:
-            if row[4] == location[0]:
+            if row[5] == location[0]:
                 match_loc = location[1]
 
-        html_content += f'<div class="grid_content">'
-        html_content += f'<span>{row[0]} &bull; {row[1]}</span><br>'
-        html_content += f'<span>{row[2]}</span><br>'
-        html_content += f'<span>{row[3]}</span><br>'
-        html_content += f'<span>{match_loc}</span><br>'
-        html_content += f'<span>{row[5]}</span><br>'
-        html_content += f'<span>{row[6]}</span><br> </div>'
+        match_html_content += f'<div class="grid_content">'
+        match_html_content += f'<span>{row[0]} &bull; {row[1]}</span><hr>'
+        match_html_content += f'<p id="event_name">{row[2]}</p>'
+        match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
+        match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
+        match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
+        match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">{row[6]}</p>'
+        match_html_content += f'<p id="player_slot">{row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
+        match_html_content += f'<p id="host_name">{row[9]}</p>'
 
-    match_file = open('templates/match2.txt', 'r')
-    html_content += match_file.read()
+    match_file = open('templates/textFiles/match3.txt', 'r')
+    match_html_content += match_file.read()
 
     #output html file
     with open('templates/match.html', 'w') as file:
-        file.write(html_content)
+        file.write(match_html_content)
     
     return render_template("match.html")
 
@@ -177,7 +200,20 @@ def make_match():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    #generate html file
+    about_file = open('templates/textFiles/about1.txt', 'r')
+    about_html_content = about_file.read()
+
+    about_html_content += f'<span> {cur_user.user_id} </span>'
+
+    about_file = open('templates/textFiles/about2.txt', 'r')
+    about_html_content += about_file.read()
+
+    #output html file
+    with open('templates/about2.html', 'w') as file:
+        file.write(about_html_content)
+    
+    return render_template("about2.html")
 
 
 if __name__ == '__main__':
