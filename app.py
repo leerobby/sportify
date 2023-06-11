@@ -216,12 +216,22 @@ def join():
                 cursor.close()
 
 
-                response = f"Successfully joined match"
-                return jsonify(response)
+                response_message = f"Successfully joined match"
+                json_response = jsonify(response)
+                redirect_response = redirect('/match')
+                response = make_response(response_message)
+                response.headers['Location'] = redirect_response.location
+                response.status_code = redirect_response.status_code
+                return response
 
             else:
-                response = f"Slot is full"
-                return jsonify(response)
+                response_message = f"Slot is full"
+                json_response = jsonify(response)
+                redirect_response = redirect('/match')
+                response = make_response(response_message)
+                response.headers['Location'] = redirect_response.location
+                response.status_code = redirect_response.status_code
+                return response
     
     return redirect("/match")
 
