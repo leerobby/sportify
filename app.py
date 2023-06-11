@@ -200,21 +200,24 @@ def join():
 
 
     #if match is not full
-    if joined_player < player_slot:
+    for row in matches:
+        if match_id == row[0]:
+            #if joined player < player slot
+            if row[2] < row[1]:
 
-        #add data to db
-        sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
-        cursor.execute(sqlform, (joined_player, cur_user.user_id, match_id))
-        db.commit()
-        cursor.close()
+                #add data to db
+                sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
+                cursor.execute(sqlform, (row[2], cur_user.user_id, row[1]))
+                db.commit()
+                cursor.close()
 
 
-        response = f"Successfully joined match"
-        return jsonify(response)
+                response = f"Successfully joined match"
+                return jsonify(response)
 
-    else:
-        response = f"Slot is full"
-        return jsonify(response)
+            else:
+                response = f"Slot is full"
+                return jsonify(response)
 
 
 @app.route('/create_match')
