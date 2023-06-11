@@ -164,7 +164,7 @@ def match():
         match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
         match_html_content += f'contentType: "application/json",'
         match_html_content += f'success: function(response) {{'
-        match_html_content += f'alert(response);'
+        match_html_content += f'console.log(response);'
         match_html_content += f'}},'
         match_html_content += f'error: function(xhr, status, error) {{'
         match_html_content += f'alert("An error occurred: " + error);'
@@ -213,32 +213,12 @@ def join():
                 db.commit()
                 cursor.close()
 
-                message = 'successfully joined match'
-                redirect = '/match'
-
-                # Create a dictionary to hold the response data
-                response_data = {
-                    'message': message,
-                    'redirect': redirect
-                }
-
-                # Return the response as JSON
-                return jsonify(response_data)
+                return redirect("/match")
 
             else:
-                message = 'slot is full'
-                redirect = '/match'
-
-                # Create a dictionary to hold the response data
-                response_data = {
-                    'message': message,
-                    'redirect': redirect
-                }
-
-                # Return the response as JSON
-                return jsonify(response_data)
+                return redirect("/match")
     
-    return render_template("dashboard.html")
+    return redirect("/match")
 
 
 @app.route('/create_match')
