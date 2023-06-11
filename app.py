@@ -196,12 +196,12 @@ def join():
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-    print(match_id, joined_player)
 
 
     #if match is not full
     for row in matches:
         if match_id == row[0]:
+            print("a")
             #if joined player < player slot
             if row[2] < row[1]:
 
@@ -218,6 +218,8 @@ def join():
             else:
                 response = f"Slot is full"
                 return jsonify(response)
+    
+    return redirect("/match")
 
 
 @app.route('/create_match')
