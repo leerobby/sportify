@@ -23,9 +23,17 @@
                     <li><a href="about">About</a></li>
                 </ul>
 
-                <form action="#">
-                    <input type="button" value="Sign in" class="sign_in_button">
-                </form>
+                <div class="navigation">
+
+                    <a class="button" href="login">
+                        <img src="{{ url_for('static', filename = 'img/user.png')}}">
+
+                        <div class="logout">LOGOUT</div>
+
+                    </a>
+
+                </div>
+
                 <span>Dummy's Profile</span>
 
             </nav>

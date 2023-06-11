@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400);
 
 * {
     box-sizing: border-box;
@@ -35,13 +36,6 @@ body {
     align-items: center;
 }
 
-.navbar_header span {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-style: italic;
-}
-
 .navbar_links {
     list-style-type: none;
     padding: 0;
@@ -69,22 +63,52 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.navbar .navbar_header .sign_in_button {
-    background-color: #fff;
-    font-size: medium;
-    left: 0;
-    border-radius: 1.5em;
-    margin: 0 5em;
-    padding: 0.5em 1.5em;
+.button img {
+    width: 25px;
+    border-radius: 50%;
+    float: left;
 }
 
-.sign_in_button:hover {
-    filter: blur(0);
-    cursor: pointer;
-    background: linear-gradient(90deg, rgb(50, 50, 245) 35%, rgb(255, 0, 221) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.logout {
+    font-size: .8em;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    right: -15px;
+    bottom: -1px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+
+}
+
+.button {
+    text-decoration: none;
+    float: right;
+    padding: 12px;
+    color: white;
+    width: 50px;
+    height: 45px;
+    background: linear-gradient(30deg, #6c2b5d, #da2532);
+    transition: width .35s;
+    -webkit-transition: width .35s;
+    overflow: hidden;
+    border-radius: 0.8em;
+}
+
+.button:hover {
+    width: 120px;
+}
+
+.button:hover .logout {
+    opacity: .9;
+}
+
+.navbar_header span {
+    position: absolute;
+    top: 1em;
+    right: 1em;
 }
 
 .header_line {

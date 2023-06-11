@@ -23,9 +23,17 @@
                     <li><a href="about">About</a></li>
                 </ul>
 
-                <form action="#">
-                    <input type="button" value="Sign in" class="sign_in_button">
-                </form>
+                <div class="navigation">
+
+                    <a class="button" href="login">
+                        <img src="{{ url_for('static', filename = 'img/user.png')}}">
+
+                        <div class="logout">LOGOUT</div>
+
+                    </a>
+
+                </div>
+
                 <span>Dummy's Profile</span>
 
             </nav>
@@ -66,7 +74,6 @@
                                     <input type="number" name="p_num" id="p_num" min="1" max="10" value="2">
                                 </div>
 
-                                <!-- NEED REVISION -->
                                 <!-- Location -->
                                 <div class="div_container">
                                     <label for="location">Location</label>
@@ -124,7 +131,8 @@
                                 <div class="div_container">
                                     <label for="price">Price</label>
                                     <div class="price-input-container">
-                                        <input type="text" id="price" name="price" placeholder="Enter the price">
+                                        <input type="text" id="price" name="price" placeholder="Enter the price"
+                                            required>
                                     </div>
                                 </div>
 
