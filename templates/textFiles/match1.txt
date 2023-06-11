@@ -14,19 +14,20 @@
     <body>
         <script>
         // Place the JavaScript code here
-        fetch('/your-route')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Display the JSON response in the console
-                // Access individual values
-                console.log(data.message); // "success"
-                console.log(data.redirect); // "/match"
-                // Redirect to the specified URL
-                window.location.href = data.redirect;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        fetch('/match')
+  .then(response => response.json())
+  .then(data => {
+    // Access the specific values from the JSON response
+    const message = data.message;
+    const redirect = data.redirect;
+    // Display the message in a pop-up
+    alert(message);
+    // Redirect to the specified URL
+    window.location.href = redirect;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
         </script>
         <div class="navbar">
             <nav class="navbar_header">
