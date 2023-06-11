@@ -7,6 +7,3 @@ class Login():
     def login(self, user_id, password):
         self.user_id = user_id
         self.password = password
-
-    def file_count(self):
-        self.count += 1
