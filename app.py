@@ -92,20 +92,19 @@ def register():
 @app.route('/dashboard')
 def dashboard():
     #generate html file
-    dashboard_file = open('templates/textFiles/about1.txt', 'r')
+    dashboard_file = open('templates/textFiles/dashboard1.txt', 'r')
     dashboard_html_content = dashboard_file.read()
 
     dashboard_html_content += f'<span> {cur_user.user_id} </span>'
 
-    dashboard_file = open('templates/textFiles/about2.txt', 'r')
+    dashboard_file = open('templates/textFiles/dashboard2.txt', 'r')
     dashboard_html_content += dashboard_file.read()
 
     #output html file
     with open('templates/dashboard2.html', 'w') as file:
         file.write(dashboard_html_content)
-    return render_template("dashboard2.html")
 
-    return render_template("dashboard.html")
+    return render_template("dashboard2.html")
 
 
 @app.route('/match', methods = ['GET', 'POST'])
@@ -145,7 +144,7 @@ def match():
         match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
         match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">{row[6]}</p>'
         match_html_content += f'<p id="player_slot">{row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-        match_html_content += f'<p id="host_name">{row[9]}</p>'
+        match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="join_button"></form></div>'
 
     match_file = open('templates/textFiles/match3.txt', 'r')
     match_html_content += match_file.read()
