@@ -12,7 +12,9 @@
     </head>
 
     <body>
-       
+        <script>
+      alert("{{ messages[0] }}");
+    </script>
         <div class="navbar">
             <nav class="navbar_header">
 
