@@ -16,15 +16,14 @@
        fetch('/match')
   .then(response => response.json())
   .then(data => {
-    console.log(data.message); // Log the message object to the console
+    const message = data.message;
     const redirect = data.redirect;
-    alert('Message received! Check the console for details.');
+    alert(JSON.stringify(message)); // Convert message to a string
     window.location.href = redirect;
   })
   .catch(error => {
     console.error('Error:', error);
   });
-
 
         </script>
         <div class="navbar">
