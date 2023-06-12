@@ -50,7 +50,7 @@
                             <option value="tennis">Tennis</option>
                         </select>
 
-                        <input type="button" value="Find Match" class="custom-button">
+                        <input type="submit" value="Find Match" class="custom-button">
 
                     </form>
                 </div>
