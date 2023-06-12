@@ -34,6 +34,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .navbar_links {
@@ -266,4 +267,8 @@ textarea:focus {
 
 .extra_space {
     height: 30px;
+}
+
+.profile {
+    text-decoration: none !important;
 }
