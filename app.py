@@ -201,10 +201,7 @@ def join():
         if int(match_id) == row[0]:
             #if match is not full
             #if joined player < player slot
-            print(row[2], row[1])
             if row[2] < row[1]:
-                
-            print(row[2], row[1])
 
                 players = row[3:]
                 if cur_user.user_id in players:
