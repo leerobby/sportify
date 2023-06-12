@@ -50,15 +50,15 @@ def signin():
             if password == row[1]:
                 cur_user.login(user_id, password)
                 return redirect("/dashboard")
+            #incorrect password
             else:
-                flash('Incorrect password. Please try again.', 'error')
+                flash('Username/Password not found. Please try again.', 'error')
                 return render_template('login.html')
 
     cursor.close()
 
-    #if user id doesn't exist or password is incorrect
+    flash('Username/Password not found. Please try again.', 'error')
     return render_template('login.html')
-
 
 @app.route('/signup')
 def signup():
