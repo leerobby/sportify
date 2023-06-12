@@ -133,6 +133,7 @@ body {
 }
 
 .custom-button {
+    display: inline-block;
     color: #ffffff;
     background-color: #25d366;
     font-size: 19px;
