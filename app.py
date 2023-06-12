@@ -262,6 +262,7 @@ def make_match():
     date = date_time[:10]
     time = date_time[-5:]
     description = request.form.get("description")
+    phone = request.form.get("phone")
     price = request.form.get("price")
     kakaopay = request.form.get("k_pay")
     naverpay = request.form.get("n_pay")
@@ -272,8 +273,8 @@ def make_match():
     cash = request.form.get("cos")
 
     #add data to db
-    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, joined_player, player_0) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1, cur_user.user_id)]
+    sqlform = "Insert into Matches(ID, event_name, sport_type, player_slot, Location_ID, gender, date, time, description, price, host_name, joined_player, player_0, host_num) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    match_data = [(cur_match_id, event_name, sport_type, player_num, location_id, gender, date, time, description, price, cur_user.user_id, 1, cur_user.user_id, phone)]
     cursor.executemany(sqlform, match_data)
     db.commit()
     cursor.close()
