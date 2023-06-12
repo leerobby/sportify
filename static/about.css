@@ -108,9 +108,14 @@ body {
     position: absolute;
     top: 1em;
     right: 1em;
+    color: black;
 }
 
 .header_line {
     background: linear-gradient(30deg, #6c2b5d, #da2532);
     height: 0.5em;
+}
+
+.profile {
+    text-decoration: none !important;
 }
