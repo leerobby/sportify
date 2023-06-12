@@ -33,6 +33,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .navbar_links {
@@ -116,6 +117,95 @@ body {
     height: 0.5em;
 }
 
+.profile {
+    text-decoration: none !important;
+}
+
+.header_text img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
+.top_content {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.top_content h1{
+    font-family: Century Gothic;
+    font-size: 40px;
+}
+.top_content p{
+    font-size: 20px;
+}
+.alex_text h2{
+    margin-top: 100px;
+    font-size: 40px;
+    font-weight: 500;
+    background-image: linear-gradient(to bottom left, #553c9a, #b393d3);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+.alex_text img{
+    display: block;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.alex_text h2{
+    margin-top: 100px;
+}
+.alex_content{
+    text-align: center;
+}
+.alex_content h3{
+    font-family: Century Gothic;
+    font-size: 30px;
+    letter-spacing: 0.07em;
+}
+.alex_content i{
+    font-size: 25px;
+}
+.robby_text img{
+    display: block;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.robby_content{
+    text-align: center;
+}
+.robby_content h3{
+    font-family: Century Gothic;
+    font-size: 30px;
+    letter-spacing: 0.07em;
+}
+.robby_content i{
+    font-size: 25px;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 45px;
+    text-align: center;
+}
+.column img{
+    width: 350px;
+    height: 400px;
+    margin-bottom: 50px;
+}
+.column h3{
+    font-family: Century Gothic;
+    font-size: 30px;
+    letter-spacing: 0.07em;
+}
+.column i{
+    font-size: 25px;
+}
 .profile {
     text-decoration: none !important;
 }
