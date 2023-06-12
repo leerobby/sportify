@@ -316,32 +316,28 @@ def find():
 
         if search_event_name and search_city and search_sport_type:
             if row[2] == search_event_name and loc_city == search_city and row[3] == search_sport_type:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name and search_city:
             if row[2] == search_event_name and loc_city == search_city:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name and search_sport_type:
             if row[2] == search_event_name and row[3] == search_sport_type:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_city and search_sport_type:
             if loc_city == search_city and row[3] == search_sport_type:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name:
             if row[2] == search_event_name:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_city:
             if loc_city == search_city:
-                matches.remove(row)
                 selected_matches.append(row)
         elif search_sport_type:
             if row[3] == search_sport_type:
-                matches.remove(row)
                 selected_matches.append(row)
+
+        print(selected_matches)
+        print(matches)
 
         if selected_matches:
             for row in selected_matches:
