@@ -1,0 +1,11 @@
+
+            </nav>
+
+            <div class="header_line"></div>
+
+            <div class="match_container">
+
+                <h2>Joined match</h2>
+
+                <div class="grid_container">
+                    <div class="grid_layout">
