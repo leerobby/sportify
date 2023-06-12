@@ -278,7 +278,6 @@ def make_match():
 
 @app.route('/find', methods = ['GET', 'POST'])
 def find():
-    return render_template("home.html")
     #input
     search_event_name = request.form.get('search')
     search_city = request.form.get('city')
@@ -347,7 +346,7 @@ def find():
         if selected_matches:
             for row in selected_matches:
                 for location in locations:
-                    if row[0] == location[0]:
+                    if row[5] == location[0]:
                         match_loc = {'name': location[1], 'province': location[2], 'city': location[3], 'address': location[4]}
 
                 match_html_content += f'<div class="grid_content">'
