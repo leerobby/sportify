@@ -276,7 +276,7 @@ def make_match():
 
     return redirect("/match")
 
-@app.route('/find')
+@app.route('/find', methods = ['GET', 'POST'])
 def find():
     #input
     search_event_name = request.form.get('search')
