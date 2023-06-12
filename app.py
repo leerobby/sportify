@@ -152,7 +152,7 @@ def match():
         match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
         match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
         match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
-        match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
+        match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">&#8361;{row[6]}</p>'
         match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
         match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
         match_html_content += f'<script>'
@@ -217,11 +217,7 @@ def join():
                 return "Slot is full"
     
     
-        return redirect(url_for('dashboard'))
-
-@app.route('/example')
-def example():
-    return redirect(url_for('dashboard'))
+        return "Slot is full"\
 
 @app.route('/create_match')
 def create_match():
@@ -229,7 +225,7 @@ def create_match():
     create_match_file = open('templates/textFiles/create_match1.txt', 'r')
     create_match_html_content = create_match_file.read()
 
-    create_match_html_content += f'<span>{cur_user.user_id}</span></a>'
+    create_match_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/create_match2.txt', 'r')
     create_match_html_content += dashboard_file.read()
@@ -321,7 +317,7 @@ def joined_match():
     joined_match_file = open('templates/textFiles/joined_match1.txt', 'r')
     joined_match_html_content = joined_match_file.read()
 
-    joined_match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    joined_match_html_content += f'<a href="/joined_nmatch" id="profile"><span>{cur_user.user_id}</span></a>'
 
     joined_match_file = open('templates/textFiles/joined_match2.txt', 'r')
     joined_match_html_content += joined_match_file.read()
