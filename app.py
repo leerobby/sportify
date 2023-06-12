@@ -278,6 +278,7 @@ def make_match():
 
 @app.route('/find', methods = ['GET', 'POST'])
 def find():
+    return render_template("home.html")
     #input
     search_event_name = request.form.get('search')
     search_city = request.form.get('city')
@@ -285,7 +286,7 @@ def find():
 
     #fetch matches from db INT
     cursor = db.cursor()
-    sqlform = "SELECT ID, event_name, sport_type FROM Matches"
+    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, joined_player, player_slot, host_name, ID FROM Matches"
     cursor.execute(sqlform)
     matches = cursor.fetchall()
 
@@ -311,27 +312,27 @@ def find():
 
     for row in matches:
         for location in locations:
-            if row[0] == location[0]:
+            if row[5] == location[0]:
                 loc_city = location[1]
 
         if search_event_name and search_city and search_sport_type:
-            if row[1] == search_event_name and loc_city == search_city and row[2] == search_sport_type:
+            if row[2] == search_event_name and loc_city == search_city and row[3] == search_sport_type:
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name and search_city:
-            if row[1] == search_event_name and loc_city == search_city:
+            if row[2] == search_event_name and loc_city == search_city:
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name and search_sport_type:
-            if row[1] == search_event_name and row[2] == search_sport_type:
+            if row[2] == search_event_name and row[3] == search_sport_type:
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_city and search_sport_type:
-            if loc_city == search_city and row[2] == search_sport_type:
+            if loc_city == search_city and row[3] == search_sport_type:
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_event_name:
-            if row[1] == search_event_name:
+            if row[2] == search_event_name:
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_city:
@@ -339,7 +340,7 @@ def find():
                 matches.remove(row)
                 selected_matches.append(row)
         elif search_sport_type:
-            if row[2] == search_sport_type:
+            if row[3] == search_sport_type:
                 matches.remove(row)
                 selected_matches.append(row)
 
