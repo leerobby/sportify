@@ -316,25 +316,25 @@ def find():
 
 
         if search_event_name and search_city and search_sport_type:
-            if search_event_name in row[2] and search_city in loc_city and search_sport_type in row[3]:
+            if search_event_name.lower() in row[2].lower() and search_city.lower() in loc_city.lower() and search_sport_type.lower() in row[3].lower():
                 selected_matches.append(row)
         elif search_event_name and search_city:
-            if search_event_name in row[2] and search_city in loc_city:
+            if search_event_name.lower() in row[2].lower() and search_city.lower() in loc_city.lower():
                 selected_matches.append(row)
         elif search_event_name and search_sport_type:
-            if search_event_name in row[2] and search_sport_type in row[3]:
+            if search_event_name.lower() in row[2].lower() and search_sport_type.lower() in row[3].lower():
                 selected_matches.append(row)
         elif search_city and search_sport_type:
-            if search_city in loc_city and search_sport_type in row[3]:
+            if search_city.lower() in loc_city.lower() and search_sport_type.lower() in row[3].lower():
                 selected_matches.append(row)
         elif search_event_name:
-            if search_event_name in row[2]:
+            if search_event_name.lower() in row[2].lower():
                 selected_matches.append(row)
         elif search_city:
-            if search_city in loc_city:
+            if search_city.lower() in loc_city.lower():
                 selected_matches.append(row)
         elif search_sport_type:
-            if search_sport_type in row[3]:
+            if search_sport_type.lower() in row[3].lower():
                 selected_matches.append(row)
 
     if selected_matches:
