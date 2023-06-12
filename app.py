@@ -311,7 +311,7 @@ def joined_match():
             joined_matches.append(row)
 
     #fetch location name from db
-    sqlform = "SELECT ID, venue_name FROM Location"
+    sqlform = "SELECT ID, venue_name, province, city, address FROM Location"
     cursor.execute(sqlform)
     locations = cursor.fetchall()
     cursor.close()
