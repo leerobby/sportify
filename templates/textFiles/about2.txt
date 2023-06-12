@@ -33,12 +33,12 @@
                 <div class="column">
                     <img src="{{ url_for('static', filename = 'img/michael.jpg')}}", width="100%">
                     <h3>Michael</h3>
-                    <i>Frontend Slave #1</i>
+                    <i>Frontend Enjoyer #1</i>
                 </div>
                 <div class="column">
                     <img src="{{ url_for('static', filename = 'img/jason.JPG')}}", width="100%">
                     <h3>Jason</h3>
-                    <i>Frontend Slave #2</i>
+                    <i>Frontend Enjoyer #2</i>
                 </div>
 
             </div>
