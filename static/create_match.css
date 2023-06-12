@@ -246,6 +246,23 @@ textarea:focus {
 .div_container textarea {
     resize: vertical;
 }
+.phone-container {
+    position: relative;
+}
+
+.phone-container::before {
+    content: "+82";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #555;
+}
+
+.phone-container input[type="text"] {
+    padding-left: 25px;
+}
 
 .price-input-container {
     position: relative;
