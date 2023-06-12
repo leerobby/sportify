@@ -313,26 +313,28 @@ def find():
         for location in locations:
             if row[5] == location[0]:
                 loc_city = location[3]
+
+
         if search_event_name and search_city and search_sport_type:
-            if row[2] == search_event_name and loc_city == search_city and row[3] == search_sport_type:
+            if search_event_name in row[2] and search_city in loc_city and search_sport_type in row[3]:
                 selected_matches.append(row)
         elif search_event_name and search_city:
-            if row[2] == search_event_name and loc_city == search_city:
+            if search_event_name in row[2] and search_city in loc_city:
                 selected_matches.append(row)
         elif search_event_name and search_sport_type:
-            if row[2] == search_event_name and row[3] == search_sport_type:
+            if search_event_name in row[2] and search_sport_type in row[3]:
                 selected_matches.append(row)
         elif search_city and search_sport_type:
-            if loc_city == search_city and row[3] == search_sport_type:
+            if search_city in loc_city and search_sport_type in row[3]:
                 selected_matches.append(row)
         elif search_event_name:
-            if row[2] == search_event_name:
+            if search_event_name in row[2]:
                 selected_matches.append(row)
         elif search_city:
-            if loc_city == search_city:
+            if search_city in loc_city:
                 selected_matches.append(row)
         elif search_sport_type:
-            if row[3] == search_sport_type:
+            if search_sport_type in row[3]:
                 selected_matches.append(row)
 
     if selected_matches:
