@@ -453,7 +453,9 @@ def joined_match():
                     match_loc = {'name': location[1], 'province': location[2], 'city': location[3], 'address': location[4]}
 
             if row[11][0] == "0":
-                row[11] = row[11][1:]
+                host_num = row[11][1:]
+            else:
+                host_num = row[11]
             
             joined_match_html_content += f'<div class="grid_content">'
             day_month_string, suffix, year = date(row[0])
@@ -464,7 +466,7 @@ def joined_match():
             joined_match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc["name"]}, {match_loc["province"]}, {match_loc["city"]}, {match_loc["address"]}</p>'
             joined_match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">&#8361;{row[6]}</p>'
             joined_match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-            joined_match_html_content += f'<p id="host_name">{row[9]}</p><input type="button" value="Contact Host" class="custom-button" id="button" onClick="window.location.href="https://api.whatsapp.com/send/?phone=82{row[11]}""></div>'
+            joined_match_html_content += f'<p id="host_name">{row[9]}</p><input type="button" value="Contact Host" class="custom-button" id="button" onClick="window.location.href="https://api.whatsapp.com/send/?phone=82{host_num}""></div>'
 
         joined_match_html_content += f'</div>'
 
