@@ -338,7 +338,6 @@ def find():
                 selected_matches.append(row)
 
     if selected_matches:
-        match_html_content += f'<div class="grid_container">'
         match_html_content += f'<div class="grid_layout">'
 
         for row in selected_matches:
@@ -375,7 +374,6 @@ def find():
             match_html_content += f'}});'
             match_html_content += f'</script>'
             count += 1
-        match_html_content += f'</div>'
         match_html_content += f'</div>'
     else:
         match_html_content += f'<h2>No matches found'
