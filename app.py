@@ -103,7 +103,7 @@ def dashboard():
     dashboard_file = open('templates/textFiles/dashboard1.txt', 'r')
     dashboard_html_content = dashboard_file.read()
 
-    dashboard_html_content += f'<span> {cur_user.user_id} </span>'
+    dashboard_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/dashboard2.txt', 'r')
     dashboard_html_content += dashboard_file.read()
@@ -133,7 +133,7 @@ def match():
     match_file = open('templates/textFiles/match1.txt', 'r')
     match_html_content = match_file.read()
 
-    match_html_content += f'<span> {cur_user.user_id} </span>'
+    match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     match_file = open('templates/textFiles/match2.txt', 'r')
     match_html_content += match_file.read()
@@ -200,10 +200,10 @@ def join():
                 db.commit()
                 cursor.close()
 
-                return redirect(url_for('dashboard'))
+                return "Match joined successfully"
 
             else:
-                return redirect(url_for('dashboard'))
+                return "Slot is full"
     
     
         return redirect(url_for('dashboard'))
@@ -218,7 +218,7 @@ def create_match():
     create_match_file = open('templates/textFiles/create_match1.txt', 'r')
     create_match_html_content = create_match_file.read()
 
-    create_match_html_content += f'<span> {cur_user.user_id} </span>'
+    create_match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/create_match2.txt', 'r')
     create_match_html_content += dashboard_file.read()
@@ -273,7 +273,7 @@ def about():
     about_file = open('templates/textFiles/about1.txt', 'r')
     about_html_content = about_file.read()
 
-    about_html_content += f'<span> {cur_user.user_id} </span>'
+    about_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     about_file = open('templates/textFiles/about2.txt', 'r')
     about_html_content += about_file.read()
@@ -283,6 +283,64 @@ def about():
         file.write(about_html_content)
     
     return render_template("about.html")
+
+@app.route('/joined_match', methods = ['GET', 'POST'])
+def joined_match():
+
+    joined_match = []
+    
+    #fetch matches from db
+    sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, joined_player, player_slot, host_name, ID, player_0, player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9 FROM Matches"
+    cursor = db.cursor()
+    cursor.execute(sqlform)
+    matches = cursor.fetchall()
+
+    for row in matches:
+        players = row[11:]
+        if cur_user in players:
+            joined_matches.append(row)
+
+    #fetch location name from db
+    sqlform = "SELECT ID, venue_name FROM Location"
+    cursor.execute(sqlform)
+    locations = cursor.fetchall()
+    cursor.close()
+
+    #generate html file
+    joined_match_file = open('templates/textFiles/joined_match1.txt', 'r')
+    joined_match_html_content = joined_match_file.read()
+
+    joined_match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+
+    joined_match_file = open('templates/textFiles/joined_match2.txt', 'r')
+    joined_match_html_content += joined_match_file.read()
+
+    for row in joined_matches:
+        for location in locations:
+            if row[5] == location[0]:
+                match_loc = location[1]
+        
+        joined_match_html_content += f'<div class="grid_content">'
+        day_month_string, suffix, year = date(row[0])
+        joined_match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
+        joined_match_html_content += f'<p id="event_name">{row[2]}</p>'
+        joined_match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
+        joined_match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
+        joined_match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
+        joined_match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
+        joined_match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
+        joined_match_html_content += f'<p id="host_name">{row[9]}</p></div>'
+
+        
+    joined_match_file = open('templates/textFiles/joined_match3.txt', 'r')
+    joined_match_html_content += joined_match_file.read()
+
+    #output html file
+    with open('templates/joined_match.html', 'w') as file:
+        file.write(joined_match_html_content)
+    
+    return render_template("joined_match.html")
+
 
 
 if __name__ == '__main__':
