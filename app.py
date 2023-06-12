@@ -139,6 +139,8 @@ def match():
     match_html_content += match_file.read()
 
     count = 0
+    
+    match_html_content += f'<div class="grid_layout">'
 
     for row in matches:
         for location in locations:
@@ -175,6 +177,8 @@ def match():
         match_html_content += f'</script>'
         count += 1
 
+    
+    match_html_content += f'</div>'
     match_file = open('templates/textFiles/match3.txt', 'r')
     match_html_content += match_file.read()
 
@@ -433,6 +437,8 @@ def joined_match():
 
     joined_match_file = open('templates/textFiles/joined_match2.txt', 'r')
     joined_match_html_content += joined_match_file.read()
+    
+    joined_match_html_content += f'<div class="grid_layout">'
 
     if len(joined_matches) == 0:
         joined_match_html_content += f'<h2>No match joined </h2>'
@@ -461,7 +467,8 @@ def joined_match():
 
     
 
-        
+    
+    joined_match_html_content += f'</div>'
     joined_match_file = open('templates/textFiles/joined_match3.txt', 'r')
     joined_match_html_content += joined_match_file.read()
 
