@@ -31,7 +31,7 @@
                     </a>
                 </div>
                 <div class="match_input">
-                    <form action="/find" class="form_input">
+                    <form action="/find" class="form_input" method = 'POST'>
                         <label for="search"><img src="{{ url_for('static', filename = 'img/magnifyingGlass.png')}}"
                                 alt="Search Icon"></label>
                         <input type="text" id="search" name="search" placeholder="Search event name">
