@@ -103,7 +103,7 @@ def dashboard():
     dashboard_file = open('templates/textFiles/dashboard1.txt', 'r')
     dashboard_html_content = dashboard_file.read()
 
-    dashboard_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    dashboard_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/dashboard2.txt', 'r')
     dashboard_html_content += dashboard_file.read()
@@ -133,7 +133,7 @@ def match():
     match_file = open('templates/textFiles/match1.txt', 'r')
     match_html_content = match_file.read()
 
-    match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    match_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     match_file = open('templates/textFiles/match2.txt', 'r')
     match_html_content += match_file.read()
@@ -218,7 +218,7 @@ def create_match():
     create_match_file = open('templates/textFiles/create_match1.txt', 'r')
     create_match_html_content = create_match_file.read()
 
-    create_match_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    create_match_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/create_match2.txt', 'r')
     create_match_html_content += dashboard_file.read()
@@ -273,7 +273,7 @@ def about():
     about_file = open('templates/textFiles/about1.txt', 'r')
     about_html_content = about_file.read()
 
-    about_html_content += f'<a href="/ongoing_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    about_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     about_file = open('templates/textFiles/about2.txt', 'r')
     about_html_content += about_file.read()
