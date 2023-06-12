@@ -297,10 +297,9 @@ def joined_match():
 
     for row in matches:
         players = row[11:]
-        if cur_user in players:
+        if cur_user.user_id in players:
             joined_matches.append(row)
 
-    print(joined_matches)
     #fetch location name from db
     sqlform = "SELECT ID, venue_name FROM Location"
     cursor.execute(sqlform)
@@ -316,21 +315,31 @@ def joined_match():
     joined_match_file = open('templates/textFiles/joined_match2.txt', 'r')
     joined_match_html_content += joined_match_file.read()
 
-    for row in joined_matches:
-        for location in locations:
-            if row[5] == location[0]:
-                match_loc = location[1]
-        
-        joined_match_html_content += f'<div class="grid_content">'
-        day_month_string, suffix, year = date(row[0])
-        joined_match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
-        joined_match_html_content += f'<p id="event_name">{row[2]}</p>'
-        joined_match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
-        joined_match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
-        joined_match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
-        joined_match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
-        joined_match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-        joined_match_html_content += f'<p id="host_name">{row[9]}</p></div>'
+    if len(joined_matches) == 0:
+        joined_match_html_content += f'<h2>No match joined </h2>'
+
+    else:
+        joined_match_html_content += f'<div class="grid_layout">'
+
+        for row in joined_matches:
+            for location in locations:
+                if row[5] == location[0]:
+                    match_loc = location[1]
+            
+            joined_match_html_content += f'<div class="grid_content">'
+            day_month_string, suffix, year = date(row[0])
+            joined_match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
+            joined_match_html_content += f'<p id="event_name">{row[2]}</p>'
+            joined_match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
+            joined_match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
+            joined_match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc}</p>'
+            joined_match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">won{row[6]}</p>'
+            joined_match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
+            joined_match_html_content += f'<p id="host_name">{row[9]}</p></div>'
+
+        joined_match_html_content += f'</div>'
+
+    
 
         
     joined_match_file = open('templates/textFiles/joined_match3.txt', 'r')
