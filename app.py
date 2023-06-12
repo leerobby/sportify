@@ -336,44 +336,41 @@ def find():
             if row[3] == search_sport_type:
                 selected_matches.append(row)
 
-        print(selected_matches)
-        print(matches)
+    if selected_matches:
+        for row in selected_matches:
+            for location in locations:
+                if row[5] == location[0]:
+                    match_loc = {'name': location[1], 'province': location[2], 'city': location[3], 'address': location[4]}
 
-        if selected_matches:
-            for row in selected_matches:
-                for location in locations:
-                    if row[5] == location[0]:
-                        match_loc = {'name': location[1], 'province': location[2], 'city': location[3], 'address': location[4]}
-
-                match_html_content += f'<div class="grid_content">'
-                day_month_string, suffix, year = date(row[0])
-                match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
-                match_html_content += f'<p id="event_name">{row[2]}</p>'
-                match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
-                match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
-                match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc["name"]}, {match_loc["province"]}, {match_loc["city"]}, {match_loc["address"]}</p>'
-                match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">&#8361;{row[6]}</p>'
-                match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
-                match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
-                match_html_content += f'<script>'
-                match_html_content += f'$(document).ready(function() {{'
-                match_html_content += f'$("#button{count}").click(function() {{'
-                match_html_content += f'$.ajax({{'
-                match_html_content += f'url: "/join",'
-                match_html_content += f'type: "POST",'
-                match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
-                match_html_content += f'contentType: "application/json",'
-                match_html_content += f'success: function(response) {{'
-                match_html_content += f'alert(response);'
-                match_html_content += f'}},'
-                match_html_content += f'error: function(xhr, status, error) {{'
-                match_html_content += f'alert("An error occurred: " + error);'
-                match_html_content += f'}}'
-                match_html_content += f'}});'
-                match_html_content += f'}});'
-                match_html_content += f'}});'
-                match_html_content += f'</script>'
-                count += 1
+            match_html_content += f'<div class="grid_content">'
+            day_month_string, suffix, year = date(row[0])
+            match_html_content += f'<span id = "date_time">{day_month_string}<sup>{suffix}</sup> {year} &bull; {row[1]}</span><hr>'
+            match_html_content += f'<p id="event_name">{row[2]}</p>'
+            match_html_content += f'<p id="sport_type"><img src="{{{{url_for("static", filename="img/sport.png") }}}}" alt="Sport Icon">{row[3]}</p>'
+            match_html_content += f'<p id="gender"><img src="{{{{ url_for("static", filename = "img/gender-fluid.png")}}}}" alt="Sport Icon">{row[4]}</p>'
+            match_html_content += f'<p id="location"><img src="{{{{ url_for("static", filename = "img/location.png")}}}}" alt="Location Icon">{match_loc["name"]}, {match_loc["province"]}, {match_loc["city"]}, {match_loc["address"]}</p>'
+            match_html_content += f'<p id="price"><img src="{{{{ url_for("static", filename = "img/price-tag.png")}}}}" alt="Price Icon">&#8361;{row[6]}</p>'
+            match_html_content += f'<p id="player_slot">Slots: {row[7]}/{row[8]}</p><hr class="dashed"><h3>Host</h3>'
+            match_html_content += f'<p id="host_name">{row[9]}</p><form action="#"><input type="button" value="Join Match" class="custom-button" id="button{count}"></form></div>'
+            match_html_content += f'<script>'
+            match_html_content += f'$(document).ready(function() {{'
+            match_html_content += f'$("#button{count}").click(function() {{'
+            match_html_content += f'$.ajax({{'
+            match_html_content += f'url: "/join",'
+            match_html_content += f'type: "POST",'
+            match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
+            match_html_content += f'contentType: "application/json",'
+            match_html_content += f'success: function(response) {{'
+            match_html_content += f'alert(response);'
+            match_html_content += f'}},'
+            match_html_content += f'error: function(xhr, status, error) {{'
+            match_html_content += f'alert("An error occurred: " + error);'
+            match_html_content += f'}}'
+            match_html_content += f'}});'
+            match_html_content += f'}});'
+            match_html_content += f'}});'
+            match_html_content += f'</script>'
+            count += 1
 
     match_file = open('templates/textFiles/match3.txt', 'r')
     match_html_content += match_file.read()
