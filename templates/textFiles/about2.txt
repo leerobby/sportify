@@ -1,7 +1,47 @@
 
+                
             </nav>
 
             <div class="header_line"></div>
+
+            <div class="header_text">
+                <img src="{{ url_for('static', filename = 'img/sportify_about.jpg')}}" alt="Cristiano Curry">
+                <div class="top_content">
+                    <h1>About Us</h1>
+                    <p>Here in Sportify, we are committed to create a healthy environment by connecting individuals to express their abilities while also enjoying sports that they desire, as convenient as possible.</p>
+                </div>
+            </div>
+
+            <div class="alex_text">
+                <h2>Meet The Team</h2>
+                <img src="{{ url_for('static', filename = 'img/alex.jpg')}}" alt="alex">
+                <div class="alex_content">
+                    <h3>Simon</h3>
+                    <i>The Database Guy</i>
+                </div>
+            </div>
+
+            <div class="robby_text">
+                <img src="{{ url_for('static', filename = 'img/robby.jpg')}}" alt="robby">
+                <div class="robby_content">
+                    <h3>Robby</h3>
+                    <i>Backend Enjoyer</i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <img src="{{ url_for('static', filename = 'img/michael.jpg')}}", width="100%">
+                    <h3>Michael</h3>
+                    <i>Frontend Slave #1</i>
+                </div>
+                <div class="column">
+                    <img src="{{ url_for('static', filename = 'img/jason.JPG')}}", width="100%">
+                    <h3>Jason</h3>
+                    <i>Frontend Slave #2</i>
+                </div>
+
+            </div>
 
         </div>
 
