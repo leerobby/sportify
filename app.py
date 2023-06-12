@@ -162,6 +162,17 @@ def match():
         match_html_content += f'url: "/join",'
         match_html_content += f'type: "POST",'
         match_html_content += f'data: JSON.stringify({{"match_id": "{row[10]}", "joined_player": "{row[7]}"}}),'
+        match_html_content += f'contentType: "application/json",'
+        match_html_content += f'success: function(response) {{'
+        match_html_content += f'alert(response);'
+        match_html_content += f'}},'
+        match_html_content += f'error: function(xhr, status, error) {{'
+        match_html_content += f'alert("An error occurred: " + error);'
+        match_html_content += f'}}'
+        match_html_content += f'}});'
+        match_html_content += f'}});'
+        match_html_content += f'}});'
+        match_html_content += f'</script>'
         count += 1
 
     match_file = open('templates/textFiles/match3.txt', 'r')
@@ -218,7 +229,7 @@ def create_match():
     create_match_file = open('templates/textFiles/create_match1.txt', 'r')
     create_match_html_content = create_match_file.read()
 
-    create_match_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
+    create_match_html_content += f'<span>{cur_user.user_id}</span></a>'
 
     dashboard_file = open('templates/textFiles/create_match2.txt', 'r')
     create_match_html_content += dashboard_file.read()
