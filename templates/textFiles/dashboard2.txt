@@ -4,7 +4,7 @@
 <div class="header_line"></div>
 
 <div class="home_body">
-    <img src="img/ball.jpg" alt="Football">
+    <img src="{{ url_for('static', filename = 'img/ball.jpg')}}" alt="Football">
     <div class="top_content">
         <h1>Play Hard<br>Sweat Hard</h1>
         <p>Unlock Your Athletic Potential: Embrace the Thrill of Competition, Discover Your Perfect
@@ -15,7 +15,7 @@
 <div class="mid_body">
     <div class="mid_content">
         <div class="in_content_left">
-            <img src="img/player.png" alt="Trent and Kai">
+            <img src="{{ url_for('static', filename = 'img/player.png')}}" alt="Trent and Kai">
         </div>
         <div class="in_content_right">
             <div class="inside_content">
