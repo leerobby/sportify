@@ -133,23 +133,19 @@ body {
 }
 
 .custom-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-left: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 2em;
-    color: #fff;
-    background-color: #da2532;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: #ffffff;
+	background-color: #25d366;
+    font-size: 19px;
+    border: 1px solid #2d63c8;
+    border-radius: 32px;
+    padding: 15px 50px;
+    letter-spacing: 2px;
+    cursor: pointer
 }
 
 .custom-button:hover {
-    background-color: #82040c;
+    color: #ffffff;
+    background-color: #075e54;
 }
 
 .custom-button:focus {
