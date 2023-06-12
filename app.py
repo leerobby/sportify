@@ -196,9 +196,10 @@ def join():
     data = request.get_json()
     match_id = data['match_id']
     joined_player = data['joined_player']
-    #if match is not full
+    
     for row in matches:
         if int(match_id) == row[0]:
+            #if match is not full
             #if joined player < player slot
             if row[2] < row[1]:
 
