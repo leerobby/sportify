@@ -55,5 +55,3 @@
                     </form>
                 </div>
 
-                <div class="grid_container">
-                    <div class="grid_layout">
