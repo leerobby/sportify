@@ -188,7 +188,7 @@ def match():
 def join():
     #fetch matches from db INT
     cursor = db.cursor()
-    sqlform = "SELECT ID, player_slot, joined_player FROM Matches"
+    sqlform = "SELECT ID, player_slot, joined_player, player_0, player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9 FROM Matches"
     cursor.execute(sqlform)
     matches = cursor.fetchall()
 
@@ -201,6 +201,10 @@ def join():
         if int(match_id) == row[0]:
             #if joined player < player slot
             if row[2] < row[1]:
+
+                players = row[3:]
+                if cur_user.user_id in players:
+                    return "You have joined this match!"
 
                 #add data to db
                 sqlform = "UPDATE Matches SET player_%s = %s WHERE ID = %s"
