@@ -287,7 +287,7 @@ def about():
 @app.route('/joined_match', methods = ['GET', 'POST'])
 def joined_match():
 
-    joined_match = []
+    joined_matches = []
     
     #fetch matches from db
     sqlform = "SELECT date, time, event_name, sport_type, gender, location_id, price, joined_player, player_slot, host_name, ID, player_0, player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9 FROM Matches"
@@ -300,6 +300,7 @@ def joined_match():
         if cur_user in players:
             joined_matches.append(row)
 
+    print(joined_matches)
     #fetch location name from db
     sqlform = "SELECT ID, venue_name FROM Location"
     cursor.execute(sqlform)
