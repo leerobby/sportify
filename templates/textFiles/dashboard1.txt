@@ -7,14 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
 
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'dashboard.css')}}">
+        <link rel="stylesheet" href="dashboard.css">
     </head>
 
     <body>
         <div class="navbar">
             <nav class="navbar_header">
 
-                <img src="{{ url_for('static', filename = 'img/sportifyText.png')}}" alt="Logo Sportify"
+                <img src="img/sportifyText.png" alt="Logo Sportify"
                     class="sportify_logo">
 
                 <ul class="navbar_links">
@@ -25,8 +25,8 @@
 
                 <div class="navigation">
 
-                    <a class="button" href = "login">
-                        <img src="{{ url_for('static', filename = 'img/user.png')}}">
+                    <a class="button" href="login">
+                        <img src="img/user.png">
 
                         <div class="logout">LOGOUT</div>
 
