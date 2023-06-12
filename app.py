@@ -312,8 +312,7 @@ def find():
     for row in matches:
         for location in locations:
             if row[5] == location[0]:
-                loc_city = location[1]
-
+                loc_city = location[3]
         if search_event_name and search_city and search_sport_type:
             if row[2] == search_event_name and loc_city == search_city and row[3] == search_sport_type:
                 selected_matches.append(row)
