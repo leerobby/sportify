@@ -33,6 +33,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .navbar_links {
@@ -371,4 +372,8 @@ path.two {
 
 #join_button {
     margin: 0;
+}
+
+.profile {
+    text-decoration: none !important;
 }
