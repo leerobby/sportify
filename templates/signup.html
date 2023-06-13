@@ -7,6 +7,17 @@
     <meta charset = "UTF-8">
     <title>Login Page</title>
     <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'signup.css')}}">
+    
+    <script>
+        // Check if flash messages exist and display them as pop-up dialogs
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
 
 </head>
 
