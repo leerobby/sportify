@@ -434,7 +434,7 @@ def joined_match():
     joined_match_file = open('templates/textFiles/joined_match1.txt', 'r')
     joined_match_html_content = joined_match_file.read()
 
-    joined_match_html_content += f'<a href="/joined_nmatch" id="profile"><span>{cur_user.user_id}</span></a>'
+    joined_match_html_content += f'<a href="/joined_match" id="profile"><span>{cur_user.user_id}</span></a>'
 
     joined_match_file = open('templates/textFiles/joined_match2.txt', 'r')
     joined_match_html_content += joined_match_file.read()
