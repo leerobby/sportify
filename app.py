@@ -85,6 +85,7 @@ def register():
     #if user id is taken
     for row in result:
         if user_id == row[0]:
+                flash('Username is already taken.', 'error')
                 return redirect("/signup")
 
     #else add data to db
